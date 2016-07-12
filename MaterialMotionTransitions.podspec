@@ -12,4 +12,6 @@ Pod::Spec.new do |s|
   s.public_header_files = "src/*.h"
   s.source_files = "src/*.{h,m}", "src/private/*.{h,m}"
   s.header_mappings_dir = "src/*"
+
+  s.dependency "MaterialMotionRuntime"
 end

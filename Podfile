@@ -1,13 +1,13 @@
 abstract_target 'MaterialMotionTransitions' do
 	pod 'MaterialMotionTransitions', :path => './'
 
-  # For release
+  # To depend on the latest release
   #pod 'MaterialMotionRuntime'
 
-  # For on-going development
+  # To depend on the bleeding edge
   pod 'MaterialMotionRuntime' , :git => 'git@github.com:material-motion/material-motion-runtime-objc.git', :branch => 'develop'
 
-  # If you need to make changes to the runtime
+  # To depend on a local modification to the runtime
   #pod 'MaterialMotionRuntime' , :git => '/path/to/runtime-objc', :branch => 'develop'
 
   workspace 'MaterialMotionTransitions.xcworkspace'
