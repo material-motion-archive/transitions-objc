@@ -1,0 +1,27 @@
+PODS:
+  - MaterialMotionRuntime (1.0.0)
+  - MaterialMotionTransitions (1.0.0)
+
+DEPENDENCIES:
+  - MaterialMotionRuntime (from `git@github.com:material-motion/material-motion-runtime-objc.git`, branch `develop`)
+  - MaterialMotionTransitions (from `./`)
+
+EXTERNAL SOURCES:
+  MaterialMotionRuntime:
+    :branch: develop
+    :git: git@github.com:material-motion/material-motion-runtime-objc.git
+  MaterialMotionTransitions:
+    :path: "./"
+
+CHECKOUT OPTIONS:
+  MaterialMotionRuntime:
+    :commit: c4517b2525bc239d0ac4e99fe4a7975945eaa4fc
+    :git: git@github.com:material-motion/material-motion-runtime-objc.git
+
+SPEC CHECKSUMS:
+  MaterialMotionRuntime: 97dd05916b9b445dbf5766fa202c08cf8d83f21f
+  MaterialMotionTransitions: 8a01122dd36e69b1c45f06de38ca54764d40d816
+
+PODFILE CHECKSUM: 59253cf3bfde834210ed255bdbde0f0b6e8445e9
+
+COCOAPODS: 1.0.1
