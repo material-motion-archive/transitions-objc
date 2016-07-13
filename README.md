@@ -1,4 +1,4 @@
-# Material Motion Transitions for Objective-C
+# Material Motion Transitions for Apple Devices
 
 ## License
 

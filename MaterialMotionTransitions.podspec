@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "MaterialMotionTransitions"
-  s.summary      = "Material Motion Transitions for Objective-C"
+  s.summary      = "Material Motion Transitions for Apple Devices"
   s.version      = "1.0.0"
   s.authors      = "The Material Motion Authors."
   s.license      = "Apache 2.0"
