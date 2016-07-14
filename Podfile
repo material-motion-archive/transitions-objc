@@ -13,7 +13,11 @@ abstract_target 'MaterialMotionTransitions' do
   workspace 'MaterialMotionTransitions.xcworkspace'
 	use_frameworks!
 
+	target "Catalog" do
+		project 'examples/apps/Catalog/Catalog.xcodeproj'
+	end
+
 	target "UnitTests" do
-		project 'tests/apps/UnitTests/UnitTests.xcodeproj'
+		project 'examples/apps/Catalog/Catalog.xcodeproj'
 	end
 end

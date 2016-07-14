@@ -14,11 +14,11 @@
  limitations under the License.
  */
 
-#import <XCTest/XCTest.h>
+import XCTest
 
-@interface UnitTestsTests : XCTestCase
-@end
+class ExampleUnitTest: XCTestCase {
 
-@implementation UnitTestsTests
-
-@end
+  func testExample() {
+    XCTAssertTrue(true)
+  }
+}
