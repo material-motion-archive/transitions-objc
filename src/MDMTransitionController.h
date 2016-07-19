@@ -18,7 +18,8 @@
 
 @class MDMTransitionController;
 
-@interface UIViewController (MaterialMotion)
+/** Material Motion Transition extensions for UIViewController */
+@interface UIViewController (MaterialMotionTransitions)
 
 /**
  A transition controller may be used to implement custom transitions.
@@ -39,6 +40,7 @@
  */
 @interface MDMTransitionController : NSObject <UIViewControllerTransitioningDelegate>
 
+/** Unavailable. Use viewController.mdm_transitionController instead. */
 - (instancetype)init NS_UNAVAILABLE;
 
 @end

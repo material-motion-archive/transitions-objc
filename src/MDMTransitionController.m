@@ -38,7 +38,7 @@
 
 @end
 
-@implementation UIViewController (MaterialMotion)
+@implementation UIViewController (MaterialMotionTransitions)
 
 - (MDMTransitionController *)mdm_transitionController {
   const void *associatedObjectKey = @selector(mdm_setTransitionController:);
