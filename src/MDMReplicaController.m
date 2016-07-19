@@ -15,4 +15,14 @@
  */
 
 #import "MDMReplicaController.h"
-#import "MDMTransitionController.h"
+
+@implementation MDMReplicaController
+
+- (nullable id)createReplica:(nonnull id)element {
+  return nil;
+}
+
+- (void)disableReplicationForElement:(nonnull id)element {
+}
+
+@end
