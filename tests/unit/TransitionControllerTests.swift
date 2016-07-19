@@ -15,10 +15,15 @@
  */
 
 import XCTest
+import UIKit
+import MaterialMotionTransitions
 
-class ExampleUnitTest: XCTestCase {
+class TransitionControllerTests: XCTestCase {
 
-  func testExample() {
-    XCTAssertTrue(true)
+  func testTransitioningDelegateAssignment() {
+    let viewController = UIViewController()
+    let transitionController = viewController.mdm_transitionController
+
+    XCTAssertTrue(viewController.transitioningDelegate! === transitionController)
   }
 }
