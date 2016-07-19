@@ -14,6 +14,7 @@
 		666FAA8B1D384A6B000363DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8A1D384A6B000363DA /* Assets.xcassets */; };
 		666FAA8E1D384A6B000363DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8C1D384A6B000363DA /* LaunchScreen.storyboard */; };
 		666FAAA91D384D52000363DA /* TransitionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAAA81D384D52000363DA /* TransitionControllerTests.swift */; };
+		66CFE9231D3EA92D00192369 /* TransitionDirectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CFE9221D3EA92D00192369 /* TransitionDirectorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		666FAA9A1D384A6B000363DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../UnitTests/Info.plist; sourceTree = "<group>"; };
 		666FAAA71D384D51000363DA /* UnitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UnitTests-Bridging-Header.h"; path = "../UnitTests/UnitTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		666FAAA81D384D52000363DA /* TransitionControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionControllerTests.swift; sourceTree = "<group>"; };
+		66CFE9221D3EA92D00192369 /* TransitionDirectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionDirectorTests.swift; sourceTree = "<group>"; };
 		7AEA1AD803218EA355BD8361 /* Pods_MaterialMotionTransitions_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionTransitions_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8309ED9D011D73E8D4FC3C9 /* Pods-MaterialMotionTransitions-Catalog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionTransitions-Catalog.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionTransitions-Catalog/Pods-MaterialMotionTransitions-Catalog.debug.xcconfig"; sourceTree = "<group>"; };
 		AFC728E2D63FF7036B4BB54A /* Pods_MaterialMotionTransitions_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialMotionTransitions_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				666FAAA81D384D52000363DA /* TransitionControllerTests.swift */,
+				66CFE9221D3EA92D00192369 /* TransitionDirectorTests.swift */,
 			);
 			name = tests;
 			path = ../../../tests/unit;
@@ -372,6 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66CFE9231D3EA92D00192369 /* TransitionDirectorTests.swift in Sources */,
 				666FAAA91D384D52000363DA /* TransitionControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
