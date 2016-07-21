@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		104814BDA382E5F694615E7D /* Pods_MaterialMotionTransitions_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AEA1AD803218EA355BD8361 /* Pods_MaterialMotionTransitions_UnitTests.framework */; };
 		10B8FBA369B75C7D55D05B54 /* Pods_MaterialMotionTransitions_Catalog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC728E2D63FF7036B4BB54A /* Pods_MaterialMotionTransitions_Catalog.framework */; };
+		662EC1511D412913007E5516 /* TransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662EC1501D412913007E5516 /* TransitionTests.swift */; };
 		6631590E1D3EB9A700AED94F /* ReplicaControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6631590D1D3EB9A700AED94F /* ReplicaControllerTests.swift */; };
 		666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAA831D384A6B000363DA /* AppDelegate.swift */; };
 		666FAA861D384A6B000363DA /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAA851D384A6B000363DA /* ExampleViewController.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		1335AB622B09D3ED4FF0E2F4 /* Pods-MaterialMotionTransitions-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialMotionTransitions-UnitTests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-MaterialMotionTransitions-UnitTests/Pods-MaterialMotionTransitions-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		662EC1501D412913007E5516 /* TransitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionTests.swift; sourceTree = "<group>"; };
 		6631590D1D3EB9A700AED94F /* ReplicaControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplicaControllerTests.swift; sourceTree = "<group>"; };
 		666FAA801D384A6B000363DA /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		666FAA831D384A6B000363DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Catalog/AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				666FAAA81D384D52000363DA /* TransitionControllerTests.swift */,
 				66CFE9221D3EA92D00192369 /* TransitionDirectorTests.swift */,
 				6631590D1D3EB9A700AED94F /* ReplicaControllerTests.swift */,
+				662EC1501D412913007E5516 /* TransitionTests.swift */,
 			);
 			name = tests;
 			path = ../../../tests/unit;
@@ -380,6 +383,7 @@
 			files = (
 				6631590E1D3EB9A700AED94F /* ReplicaControllerTests.swift in Sources */,
 				66CFE9231D3EA92D00192369 /* TransitionDirectorTests.swift in Sources */,
+				662EC1511D412913007E5516 /* TransitionTests.swift in Sources */,
 				666FAAA91D384D52000363DA /* TransitionControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

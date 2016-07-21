@@ -16,6 +16,9 @@
 
 #import "MDMTransitionController.h"
 
+#import "MDMTransitionDirector+Private.h"
+#import "MDMViewControllerTransition.h"
+
 #import <objc/runtime.h>
 
 @interface MDMTransitionController ()
@@ -23,6 +26,7 @@
 - (instancetype)initWithViewController:(UIViewController *)viewController;
 
 @property(nonatomic, weak) UIViewController *associatedViewController;
+@property(nonatomic, strong) MDMViewControllerTransition *transition;
 
 @end
 
@@ -34,6 +38,68 @@
     _associatedViewController = viewController;
   }
   return self;
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+  [self prepareForTransitionWithSourceViewController:source
+                                  leftViewController:presenting
+                                 rightViewController:presented
+                                           direction:MDMTransitionDirectionToTheRight];
+  return _transition;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+  // The source is sadly lost by the time we get to dismissing the view controller, so we do our
+  // best to infer what the source might have been.
+  //
+  // If the presenting view controller is a nav controller it's pretty likely that the view
+  // controller was presented from its last view controller. Making this assumption is generally
+  // harmless and only affects the view retriever search (by starting one view controller lower than
+  // we otherwise would by using the navigation controller as the source).
+  UIViewController *sourceViewController = dismissed.presentingViewController;
+  if ([sourceViewController isKindOfClass:[UINavigationController class]]) {
+    UINavigationController *navController = (UINavigationController *)sourceViewController;
+    sourceViewController = [navController.viewControllers lastObject];
+  }
+  [self prepareForTransitionWithSourceViewController:sourceViewController
+                                  leftViewController:dismissed.presentingViewController
+                                 rightViewController:dismissed
+                                           direction:MDMTransitionDirectionToTheLeft];
+  return _transition;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
+  if (animator == _transition) {
+    return _transition;
+  }
+  return nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+  if (animator == _transition) {
+    return _transition;
+  }
+  return nil;
+}
+
+#pragma mark - Private APIs
+
+- (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
+                                  leftViewController:(UIViewController *)leftViewController
+                                 rightViewController:(UIViewController *)rightViewController
+                                           direction:(MDMTransitionDirection)direction {
+  // Dismissing while we're in another transition is fine.
+  if (direction == MDMTransitionDirectionToTheLeft) {
+    _transition = nil;
+  }
+  NSAssert(!_transition, @"Transition already active!");
+
+  MDMTransitionDirector *director = [[MDMTransitionDirector alloc] initWithInitialDirection:direction];
+  _transition = [[MDMViewControllerTransition alloc] initWithDirector:director];
 }
 
 @end
