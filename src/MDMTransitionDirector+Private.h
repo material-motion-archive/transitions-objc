@@ -18,6 +18,6 @@
 
 @interface MDMTransitionDirector ()
 
-- (instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection;
+- (nonnull instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection;
 
 @end

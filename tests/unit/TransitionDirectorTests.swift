@@ -22,19 +22,19 @@ class TransitionDirectorTests: XCTestCase {
 
   func testInitialization() {
     let director = MDMTransitionDirector(initialDirection: .toTheRight)
-    XCTAssertEqual(director?.initialDirection, .toTheRight)
+    XCTAssertEqual(director.initialDirection, .toTheRight)
   }
 
   func testCallingSetUp() {
     let director = MDMTransitionDirector(initialDirection: .toTheRight)
 
     let transaction = MDMTransaction()
-    director?.setUp(transaction)
+    director.setUp(transaction)
   }
 
   func testNonZeroDurationForUIKitAnimations() {
     let director = MDMTransitionDirector(initialDirection: .toTheRight)
 
-    XCTAssertGreaterThan(director!.transitionDurationForUIKitAnimations(), 0 as TimeInterval)
+    XCTAssertGreaterThan(director.transitionDurationForUIKitAnimations(), 0 as TimeInterval)
   }
 }
