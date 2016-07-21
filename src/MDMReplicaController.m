@@ -16,13 +16,28 @@
 
 #import "MDMReplicaController.h"
 
-@implementation MDMReplicaController
+@implementation MDMReplicaController {
+  NSHashTable *_disabledElements;
+}
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    NSPointerFunctionsOptions options = (NSPointerFunctionsWeakMemory | NSPointerFunctionsObjectPointerPersonality);
+    _disabledElements = [NSHashTable hashTableWithOptions:options];
+  }
+  return self;
+}
 
 - (nullable id)createReplica:(nonnull id)element {
-  return nil;
+  if ([_disabledElements containsObject:element]) {
+    return nil;
+  }
+  return [_delegate createReplica:element];
 }
 
 - (void)disableReplicationForElement:(nonnull id)element {
+  [_disabledElements addObject:element];
 }
 
 @end

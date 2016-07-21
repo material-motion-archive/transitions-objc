@@ -29,6 +29,9 @@ class ReplicaControllerTests: XCTestCase {
   func testDisableReplication() {
     let replicator = MDMReplicaController()
 
-    replicator.disableReplication(forElement: NSObject())
+    let object = NSObject()
+    replicator.disableReplication(forElement: object)
+
+    XCTAssertNil(replicator.createReplica(object))
   }
 }
