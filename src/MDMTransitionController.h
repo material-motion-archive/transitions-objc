@@ -41,6 +41,6 @@
 @interface MDMTransitionController : NSObject <UIViewControllerTransitioningDelegate>
 
 /** Unavailable. Use viewController.mdm_transitionController instead. */
-- (instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end
