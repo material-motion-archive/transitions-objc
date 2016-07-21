@@ -17,18 +17,25 @@
 #import "MDMTransitionDirector.h"
 #import "MDMTransitionDirector+Private.h"
 
+const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations = 0.3;
+
 @implementation MDMTransitionDirector
 
 - (instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection {
   self = [super init];
   if (self) {
     _initialDirection = initialDirection;
+    _currentDirection = initialDirection;
   }
   return self;
 }
 
 - (void)setUp:(MDMTransaction *)transaction {
   // No-op
+}
+
+- (NSTimeInterval)transitionDurationForUIKitAnimations {
+  return MDMDefaultTransitionDurationForUIKitAnimations;
 }
 
 @end

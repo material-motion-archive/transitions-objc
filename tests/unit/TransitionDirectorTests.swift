@@ -31,4 +31,10 @@ class TransitionDirectorTests: XCTestCase {
     let transaction = MDMTransaction()
     director?.setUp(transaction)
   }
+
+  func testNonZeroDurationForUIKitAnimations() {
+    let director = MDMTransitionDirector(initialDirection: .toTheRight)
+
+    XCTAssertGreaterThan(director!.transitionDurationForUIKitAnimations(), 0 as TimeInterval)
+  }
 }

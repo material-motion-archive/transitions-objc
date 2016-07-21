@@ -16,6 +16,9 @@
 
 @import MaterialMotionRuntime;
 
+/** The default duration of a Material Motion view controller transition in seconds. */
+extern const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations;
+
 /** The possible directions of a view controller transition. */
 typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
   /** The transition is being presented/pushed. */
@@ -36,8 +39,24 @@ typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
 /** Unavailable. Use MDMTransitionController instead. */
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
+#pragma mark Transition direction
+
 /** The initial direction of this transition. */
 @property(nonatomic, assign, readonly) MDMTransitionDirection initialDirection;
+
+/** The current direction of this transition. */
+@property(nonatomic, assign, readonly) MDMTransitionDirection currentDirection;
+
+#pragma mark Affecting corresponding UIKit animations
+
+/**
+ The desired duration of corresponding UIKit animations for this transition in seconds.
+
+ Default: MDMDefaultTransitionDurationForUIKitAnimations
+ */
+- (NSTimeInterval)transitionDurationForUIKitAnimations;
+
+#pragma mark Set up phase
 
 /**
  Invoked on initiation of a view controller transition.
