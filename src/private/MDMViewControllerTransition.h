@@ -18,7 +18,7 @@
 
 /**
  A view controller transition governs the lifecycle of a single UIViewController transition.
- 
+
  This object is a bridge between MDMTransitionController and the Material Motion Runtime.
  */
 @interface MDMViewControllerTransition : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning>

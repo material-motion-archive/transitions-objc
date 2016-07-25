@@ -30,7 +30,7 @@
 
 /**
  Attempts to create a replica of the provided element.
- 
+
  If replication fails, null is returned.
 
  The returned element can not be the provided element.
