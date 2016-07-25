@@ -43,4 +43,14 @@
 /** Unavailable. Use viewController.mdm_transitionController instead. */
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
+/**
+ An instance of the directorClass will be created to describe the motion for this transition
+ controller's transitions.
+
+ If no directorClass is provided then a default UIKit transition will be used.
+
+ Must be a subclass of MDMTransitionDirector.
+ */
+@property(nonatomic, assign, nullable) Class directorClass;
+
 @end

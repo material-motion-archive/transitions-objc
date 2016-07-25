@@ -98,8 +98,10 @@
   }
   NSAssert(!_transition, @"Transition already active!");
 
-  MDMTransitionDirector *director = [[MDMTransitionDirector alloc] initWithInitialDirection:direction];
-  _transition = [[MDMViewControllerTransition alloc] initWithDirector:director];
+  if (self.directorClass) {
+    MDMTransitionDirector *director = [[self.directorClass alloc] initWithInitialDirection:direction];
+    _transition = [[MDMViewControllerTransition alloc] initWithDirector:director];
+  }
 }
 
 @end

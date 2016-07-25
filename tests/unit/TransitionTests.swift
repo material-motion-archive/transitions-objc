@@ -15,6 +15,7 @@
  */
 
 import XCTest
+import MaterialMotionTransitions
 
 class TransitionTests: XCTestCase {
 
@@ -30,7 +31,9 @@ class TransitionTests: XCTestCase {
     window.layer.speed = 100
   }
 
-  func testBasicPresentTransition() {
+  //MARK: - No director
+
+  func testNoDirectorPresentTransition() {
     let toPresent = UIViewController()
     toPresent.view.backgroundColor = .red()
 
@@ -43,7 +46,7 @@ class TransitionTests: XCTestCase {
     waitForExpectations(timeout: 1)
   }
 
-  func testBasicDismissTransition() {
+  func testNoDirectorDismissTransition() {
     let toPresent = UIViewController()
     toPresent.view.backgroundColor = .red()
 
@@ -57,8 +60,23 @@ class TransitionTests: XCTestCase {
     waitForExpectations(timeout: 1)
   }
 
+  //MARK: - Simple director
+
+  func testSimpleDirectorPresentTransition() {
+    let toPresent = UIViewController()
+    toPresent.view.backgroundColor = .red()
+
+    toPresent.mdm_transitionController.directorClass = EmptyDirector.self
+
+    let expect = expectation(description: "Did present")
+    window.rootViewController!.present(toPresent, animated: true) {
+      expect.fulfill()
+    }
+    waitForExpectations(timeout: 1)
+  }
+
   // Litmus test for vanilla UIKit transitions
-  func testBasicUIKit() {
+  func testBasicUIKitTransition() {
     let toPresent = UIViewController()
     toPresent.view.backgroundColor = .red()
 
@@ -68,5 +86,7 @@ class TransitionTests: XCTestCase {
     }
     waitForExpectations(timeout: 1)
   }
+}
 
+class EmptyDirector: MDMTransitionDirector {
 }
