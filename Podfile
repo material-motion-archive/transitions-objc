@@ -1,5 +1,5 @@
 abstract_target 'MaterialMotionTransitions' do
-	pod 'MaterialMotionTransitions', :path => './'
+  pod 'MaterialMotionTransitions', :path => './'
 
   # To depend on the latest release
   #pod 'MaterialMotionRuntime'
@@ -11,13 +11,13 @@ abstract_target 'MaterialMotionTransitions' do
   #pod 'MaterialMotionRuntime' , :git => '/path/to/runtime-objc', :branch => 'develop'
 
   workspace 'MaterialMotionTransitions.xcworkspace'
-	use_frameworks!
+  use_frameworks!
 
-	target "Catalog" do
-		project 'examples/apps/Catalog/Catalog.xcodeproj'
-	end
+  target "Catalog" do
+    project 'examples/apps/Catalog/Catalog.xcodeproj'
+  end
 
-	target "UnitTests" do
-		project 'examples/apps/Catalog/Catalog.xcodeproj'
-	end
+  target "UnitTests" do
+    project 'examples/apps/Catalog/Catalog.xcodeproj'
+  end
 end
