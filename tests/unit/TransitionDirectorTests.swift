@@ -28,7 +28,7 @@ class TransitionDirectorTests: XCTestCase {
   func testCallingSetUp() {
     let director = MDMTransitionDirector(initialDirection: .toTheRight)
 
-    let transaction = MDMTransaction()
+    let transaction = Transaction()
     director.setUp(transaction)
   }
 
