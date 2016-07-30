@@ -18,6 +18,8 @@
 
 @interface MDMTransitionDirector ()
 
-- (nonnull instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection;
+- (nonnull instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection
+                              fromViewController:(nonnull UIViewController *)fromViewController
+                                toViewController:(nonnull UIViewController *)toViewController;
 
 @end

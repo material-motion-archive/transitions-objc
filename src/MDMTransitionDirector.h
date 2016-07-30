@@ -47,6 +47,14 @@ typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
 /** The current direction of this transition. */
 @property(nonatomic, assign, readonly) MDMTransitionDirection currentDirection;
 
+#pragma mark Transition sides
+
+/** The source view controller for this transition. */
+@property(nonatomic, strong, nonnull, readonly) UIViewController *fromViewController;
+
+/** The destination view controller for this transition. */
+@property(nonatomic, strong, nonnull, readonly) UIViewController *toViewController;
+
 #pragma mark Affecting corresponding UIKit animations
 
 /**
