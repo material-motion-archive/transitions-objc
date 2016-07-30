@@ -22,10 +22,10 @@ extern const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations;
 /** The possible directions of a view controller transition. */
 typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
   /** The transition is being presented/pushed. */
-  MDMTransitionDirectionToTheRight,
+  MDMTransitionDirectionPresent,
 
   /** The transition is being dismissed/popped. */
-  MDMTransitionDirectionToTheLeft,
+  MDMTransitionDirectionDismiss,
 };
 
 /**

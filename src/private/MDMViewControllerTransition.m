@@ -22,8 +22,8 @@
 @property(nonatomic, strong) MDMScheduler *scheduler;
 
 @property(nonatomic, strong) id<UIViewControllerContextTransitioning> transitioningContext;
-@property(nonatomic, strong) UIViewController *leftViewController;
-@property(nonatomic, strong) UIViewController *rightViewController;
+@property(nonatomic, strong) UIViewController *fromViewController;
+@property(nonatomic, strong) UIViewController *toViewController;
 @end
 
 @implementation MDMViewControllerTransition
@@ -47,13 +47,8 @@
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted {
-  _leftViewController.view.userInteractionEnabled = YES;
-  _rightViewController.view.userInteractionEnabled = YES;
-
-  UIViewController *dismissedViewController = nil;
-  if (_director.initialDirection == _director.currentDirection && _director.initialDirection == MDMTransitionDirectionToTheLeft) {
-    dismissedViewController = _rightViewController;
-  }
+  self.fromViewController.view.userInteractionEnabled = YES;
+  self.toViewController.view.userInteractionEnabled = YES;
 
   _transitioningContext = nil;
 }
@@ -61,42 +56,35 @@
 #pragma mark - UIViewControllerInteractiveTransitioning
 
 - (void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-  _transitioningContext = transitionContext;
+  self.transitioningContext = transitionContext;
 
-  UIViewController *leftViewController = [transitionContext viewControllerForKey:
-                                                                ((_director.initialDirection == MDMTransitionDirectionToTheRight)
-                                                                     ? UITransitionContextFromViewControllerKey
-                                                                     : UITransitionContextToViewControllerKey)];
-  UIViewController *rightViewController = [transitionContext viewControllerForKey:
-                                                                 ((_director.initialDirection == MDMTransitionDirectionToTheRight)
-                                                                      ? UITransitionContextToViewControllerKey
-                                                                      : UITransitionContextFromViewControllerKey)];
+  UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
   UIView *containerView = [transitionContext containerView];
 
-  CGRect finalFrame = [transitionContext finalFrameForViewController:leftViewController];
+  CGRect finalFrame = [transitionContext finalFrameForViewController:fromViewController];
   if (!CGRectIsEmpty(finalFrame)) {
-    leftViewController.view.frame = finalFrame;
+    fromViewController.view.frame = finalFrame;
   }
-  finalFrame = [transitionContext finalFrameForViewController:rightViewController];
+  finalFrame = [transitionContext finalFrameForViewController:toViewController];
   if (!CGRectIsEmpty(finalFrame)) {
-    rightViewController.view.frame = finalFrame;
+    toViewController.view.frame = finalFrame;
   }
 
-  UIViewController *destinationViewController =
-      [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-  if (destinationViewController == rightViewController) {
-    [containerView addSubview:destinationViewController.view];
+  // Ensure that the destination view controller is part of the view hierarchy.
+  if (self.director.initialDirection == MDMTransitionDirectionPresent) {
+    [containerView addSubview:toViewController.view];
   } else {
-    [containerView insertSubview:destinationViewController.view atIndex:0];
+    [containerView insertSubview:toViewController.view atIndex:0];
   }
-  [destinationViewController.view layoutIfNeeded];
+  [toViewController.view layoutIfNeeded];
 
-  _leftViewController = leftViewController;
-  _rightViewController = rightViewController;
+  self.fromViewController = fromViewController;
+  self.toViewController = toViewController;
 
   // Re-enabled in -animationEnded:
-  _leftViewController.view.userInteractionEnabled = NO;
-  _rightViewController.view.userInteractionEnabled = NO;
+  self.fromViewController.view.userInteractionEnabled = NO;
+  self.toViewController.view.userInteractionEnabled = NO;
 
   _scheduler = [MDMScheduler new];
   _scheduler.delegate = self;

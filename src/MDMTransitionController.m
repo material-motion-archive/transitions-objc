@@ -45,10 +45,10 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source {
-  [self prepareForTransitionWithSourceViewController:source
-                                  leftViewController:presenting
-                                 rightViewController:presented
-                                           direction:MDMTransitionDirectionToTheRight];
+  [self prepareForTransitionWithfromViewController:source
+                                fromViewController:presenting
+                                  toViewController:presented
+                                         direction:MDMTransitionDirectionPresent];
   return _transition;
 }
 
@@ -60,15 +60,15 @@
   // controller was presented from its last view controller. Making this assumption is generally
   // harmless and only affects the view retriever search (by starting one view controller lower than
   // we otherwise would by using the navigation controller as the source).
-  UIViewController *sourceViewController = dismissed.presentingViewController;
-  if ([sourceViewController isKindOfClass:[UINavigationController class]]) {
-    UINavigationController *navController = (UINavigationController *)sourceViewController;
-    sourceViewController = [navController.viewControllers lastObject];
+  UIViewController *fromViewController = dismissed.presentingViewController;
+  if ([fromViewController isKindOfClass:[UINavigationController class]]) {
+    UINavigationController *navController = (UINavigationController *)fromViewController;
+    fromViewController = [navController.viewControllers lastObject];
   }
-  [self prepareForTransitionWithSourceViewController:sourceViewController
-                                  leftViewController:dismissed.presentingViewController
-                                 rightViewController:dismissed
-                                           direction:MDMTransitionDirectionToTheLeft];
+  [self prepareForTransitionWithfromViewController:fromViewController
+                                fromViewController:dismissed
+                                  toViewController:dismissed.presentingViewController
+                                         direction:MDMTransitionDirectionDismiss];
   return _transition;
 }
 
@@ -88,12 +88,12 @@
 
 #pragma mark - Private APIs
 
-- (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
-                                  leftViewController:(UIViewController *)leftViewController
-                                 rightViewController:(UIViewController *)rightViewController
-                                           direction:(MDMTransitionDirection)direction {
+- (void)prepareForTransitionWithfromViewController:(UIViewController *)fromViewController
+                                fromViewController:(UIViewController *)fromViewController
+                                  toViewController:(UIViewController *)toViewController
+                                         direction:(MDMTransitionDirection)direction {
   // Dismissing while we're in another transition is fine.
-  if (direction == MDMTransitionDirectionToTheLeft) {
+  if (direction == MDMTransitionDirectionDismiss) {
     _transition = nil;
   }
   NSAssert(!_transition, @"Transition already active!");
