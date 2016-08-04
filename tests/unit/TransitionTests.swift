@@ -26,7 +26,7 @@ class TransitionTests: XCTestCase {
 
     window = UIWindow()
     window.rootViewController = UIViewController()
-    window.rootViewController!.view.backgroundColor = .blue()
+    window.rootViewController!.view.backgroundColor = .blue
     window.makeKeyAndVisible()
     window.layer.speed = 100
   }
@@ -35,7 +35,7 @@ class TransitionTests: XCTestCase {
 
   func testNoDirectorPresentTransition() {
     let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red()
+    toPresent.view.backgroundColor = .red
 
     let _ = toPresent.mdm_transitionController
 
@@ -48,7 +48,7 @@ class TransitionTests: XCTestCase {
 
   func testNoDirectorDismissTransition() {
     let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red()
+    toPresent.view.backgroundColor = .red
 
     let _ = toPresent.mdm_transitionController
 
@@ -64,7 +64,7 @@ class TransitionTests: XCTestCase {
 
   func testSimpleDirectorPresentTransition() {
     let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red()
+    toPresent.view.backgroundColor = .red
 
     toPresent.mdm_transitionController.directorClass = EmptyDirector.self
 
@@ -78,7 +78,7 @@ class TransitionTests: XCTestCase {
   // Litmus test for vanilla UIKit transitions
   func testBasicUIKitTransition() {
     let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red()
+    toPresent.view.backgroundColor = .red
 
     let expect = expectation(description: "Did present")
     window.rootViewController!.present(toPresent, animated: true) {
