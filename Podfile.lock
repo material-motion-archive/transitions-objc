@@ -1,13 +1,19 @@
 PODS:
-  - MaterialMotionRuntime (1.0.0)
+  - MaterialMotionCoreAnimationFamily (1.0.0):
+    - MaterialMotionRuntime
+  - MaterialMotionRuntime (2.0.1)
   - MaterialMotionTransitions (1.0.0):
     - MaterialMotionRuntime
 
 DEPENDENCIES:
+  - MaterialMotionCoreAnimationFamily (from `https://github.com/material-motion/material-motion-family-coreanimation-swift`, branch `develop`)
   - MaterialMotionRuntime (from `https://github.com/material-motion/material-motion-runtime-objc.git`, branch `develop`)
   - MaterialMotionTransitions (from `./`)
 
 EXTERNAL SOURCES:
+  MaterialMotionCoreAnimationFamily:
+    :branch: develop
+    :git: https://github.com/material-motion/material-motion-family-coreanimation-swift
   MaterialMotionRuntime:
     :branch: develop
     :git: https://github.com/material-motion/material-motion-runtime-objc.git
@@ -15,14 +21,18 @@ EXTERNAL SOURCES:
     :path: "./"
 
 CHECKOUT OPTIONS:
+  MaterialMotionCoreAnimationFamily:
+    :commit: b4a3012bed37e4bfb594cb81a65cc06c174feb32
+    :git: https://github.com/material-motion/material-motion-family-coreanimation-swift
   MaterialMotionRuntime:
-    :commit: 6f7a52744751e511d0daf119642446c46bed1f5c
+    :commit: 2a43053b22493659cec64c2a49d5d52212ab484f
     :git: https://github.com/material-motion/material-motion-runtime-objc.git
 
 SPEC CHECKSUMS:
-  MaterialMotionRuntime: f74a3f339e5123951b59eb9d64f8890d5a460523
+  MaterialMotionCoreAnimationFamily: 363b6b0343e46950478ab5487a38445cf966de57
+  MaterialMotionRuntime: 142f75ce2cf2682458aa9631541b8644b653ef34
   MaterialMotionTransitions: ff2a3d5ec768c61d3d2e9a8b46d31e071119fee7
 
-PODFILE CHECKSUM: 0b4d5a18573f2f6a11834af02488b1740a442d62
+PODFILE CHECKSUM: 1e4d3ed566b0075eececb0e6fd9450c8d384f657
 
 COCOAPODS: 1.0.1
