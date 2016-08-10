@@ -1,6 +1,7 @@
 # Material Motion Transitions for Apple Devices
 
 [![Build Status](https://travis-ci.org/material-motion/material-motion-transitions-objc.svg?branch=develop)](https://travis-ci.org/material-motion/material-motion-transitions-objc)
+[![codecov](https://codecov.io/gh/material-motion/material-motion-transitions-objc/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/material-motion-transitions-objc)
 
 ## License
 
