@@ -21,19 +21,19 @@ import MaterialMotionTransitions
 class TransitionDirectorTests: XCTestCase {
 
   func testInitialization() {
-    let director = MDMTransitionDirector(initialDirection: .present, from: UIViewController(), to: UIViewController())
+    let director = TransitionDirector(initialDirection: .present, from: UIViewController(), to: UIViewController())
     XCTAssertEqual(director.initialDirection, .present)
   }
 
   func testCallingSetUp() {
-    let director = MDMTransitionDirector(initialDirection: .present, from: UIViewController(), to: UIViewController())
+    let director = TransitionDirector(initialDirection: .present, from: UIViewController(), to: UIViewController())
 
     let transaction = Transaction()
-    director.setUp(transaction)
+    director.setUp(transaction: transaction)
   }
 
   func testNonZeroDurationForUIKitAnimations() {
-    let director = MDMTransitionDirector(initialDirection: .present, from: UIViewController(), to: UIViewController())
+    let director = TransitionDirector(initialDirection: .present, from: UIViewController(), to: UIViewController())
 
     XCTAssertGreaterThan(director.transitionDurationForUIKitAnimations(), 0 as TimeInterval)
   }

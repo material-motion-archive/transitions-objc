@@ -21,17 +21,17 @@ import MaterialMotionTransitions
 class ReplicaControllerTests: XCTestCase {
 
   func testNoReplicationWithoutDelegate() {
-    let replicator = MDMReplicaController()
+    let replicator = ReplicaController()
 
-    XCTAssertNil(replicator.createReplica(NSObject()))
+    XCTAssertNil(replicator.replicate(element: NSObject()))
   }
 
   func testDisableReplication() {
-    let replicator = MDMReplicaController()
+    let replicator = ReplicaController()
 
     let object = NSObject()
     replicator.disableReplication(forElement: object)
 
-    XCTAssertNil(replicator.createReplica(object))
+    XCTAssertNil(replicator.replicate(element: object))
   }
 }

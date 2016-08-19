@@ -29,11 +29,11 @@
   return self;
 }
 
-- (nullable id)createReplica:(nonnull id)element {
+- (nullable id)replicateElement:(nonnull id)element {
   if ([_disabledElements containsObject:element]) {
     return nil;
   }
-  return [_delegate createReplica:element];
+  return [_delegate replicateElement:element];
 }
 
 - (void)disableReplicationForElement:(nonnull id)element {

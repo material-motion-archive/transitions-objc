@@ -14,7 +14,8 @@
  limitations under the License.
  */
 
-@import MaterialMotionRuntime;
+#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+#import <UIKit/UIKit.h>
 
 /** The default duration of a Material Motion view controller transition in seconds. */
 extern const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations;
@@ -26,7 +27,7 @@ typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
 
   /** The transition is being dismissed/popped. */
   MDMTransitionDirectionDismiss,
-};
+} NS_SWIFT_NAME(TransitionDirection);
 
 /**
  A transition director is responsible for describing the motion that will occur during a
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
 
  This object is intended to be subclassed.
  */
+NS_SWIFT_NAME(TransitionDirector)
 @interface MDMTransitionDirector : NSObject
 
 /** Unavailable. Use MDMTransitionController instead. */
@@ -74,6 +76,7 @@ typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
  @param transaction All motion added to this transaction instance will be committed to the
                     transition's runtime.
  */
-- (void)setUp:(nonnull MDMTransaction *)transaction;
+- (void)setUp:(nonnull MDMTransaction *)transaction
+    NS_SWIFT_NAME(setUp(transaction:));
 
 @end

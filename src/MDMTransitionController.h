@@ -38,6 +38,7 @@
 
  This class is not meant to be instantiated directly.
  */
+NS_SWIFT_NAME(TransitionController)
 @interface MDMTransitionController : NSObject <UIViewControllerTransitioningDelegate>
 
 /** Unavailable. Use viewController.mdm_transitionController instead. */

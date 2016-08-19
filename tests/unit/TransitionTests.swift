@@ -88,5 +88,5 @@ class TransitionTests: XCTestCase {
   }
 }
 
-class EmptyDirector: MDMTransitionDirector {
+class EmptyDirector: TransitionDirector {
 }

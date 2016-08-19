@@ -24,6 +24,7 @@
 
  An element might be a UIView or any other displayable object.
  */
+NS_SWIFT_NAME(ReplicaController)
 @interface MDMReplicaController : NSObject
 
 #pragma mark Making replicas
@@ -35,7 +36,8 @@
 
  The returned element can not be the provided element.
  */
-- (nullable id)createReplica:(nonnull id)element;
+- (nullable id)replicateElement:(nonnull id)element
+    NS_SWIFT_NAME(replicate(element:));
 
 #pragma mark Configuration replication
 
@@ -47,11 +49,13 @@
 @property(nonatomic, weak, nullable) id<MDMReplicaControllerDelegate> delegate;
 
 /** Disable replication for a specific element. */
-- (void)disableReplicationForElement:(nonnull id)element;
+- (void)disableReplicationForElement:(nonnull id)element
+    NS_SWIFT_NAME(disableReplication(forElement:));
 
 @end
 
 /** The replica controller delegate is responsible for creating replica elements. */
+NS_SWIFT_NAME(ReplicaControllerDelegate)
 @protocol MDMReplicaControllerDelegate <NSObject>
 
 /**
@@ -59,6 +63,7 @@
 
  Return `element` if replication of the element is not possible or desired.
  */
-- (nonnull id)createReplica:(nonnull id)element;
+- (nonnull id)replicateElement:(nonnull id)element
+    NS_SWIFT_NAME(replicate(element:));
 
 @end

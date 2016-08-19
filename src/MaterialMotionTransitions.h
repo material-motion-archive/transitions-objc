@@ -17,3 +17,5 @@
 #import "MDMReplicaController.h"
 #import "MDMTransitionController.h"
 #import "MDMTransitionDirector.h"
+
+#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
