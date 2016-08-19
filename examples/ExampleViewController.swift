@@ -15,6 +15,7 @@
  */
 
 import UIKit
+import MaterialMotionTransitions
 
 class ExampleViewController: UIViewController {
 
@@ -22,5 +23,26 @@ class ExampleViewController: UIViewController {
     super.viewDidLoad()
 
     self.view.backgroundColor = .white
+
+    self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap)))
+  }
+
+  func didTap() {
+    let vc = ExampleViewController()
+    vc.view.backgroundColor = .red
+
+    let nc = UINavigationController(rootViewController: vc)
+    vc.navigationItem.leftBarButtonItem = UIBarButtonItem(
+      title: "Back",
+      style: .done,
+      target: self,
+      action: #selector(didTapBack)
+    )
+    nc.mdm_transitionController.directorClass = FadeInTransitionDirector.self
+    self.present(nc, animated: true)
+  }
+
+  func didTapBack() {
+    self.dismiss(animated: true)
   }
 }
