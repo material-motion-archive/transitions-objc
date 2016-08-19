@@ -16,3 +16,4 @@
 
 #import "MDMReplicaController.h"
 #import "MDMTransitionController.h"
+#import "MDMTransitionDirector.h"
