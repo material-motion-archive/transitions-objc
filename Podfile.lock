@@ -22,10 +22,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MaterialMotionCoreAnimationFamily:
-    :commit: 7bc5169f9eb85769a4ff3f2a71c0c9c12f493e5c
+    :commit: cb5f83854db058b1a70ba2fc520c7e495569eab7
     :git: https://github.com/material-motion/material-motion-family-coreanimation-swift
   MaterialMotionRuntime:
-    :commit: 6fd31d275d7fda65331ed170ae393de8f84f6e2f
+    :commit: e002e18e8878f67ca5ae17ee0ce8a05357254bc4
     :git: https://github.com/material-motion/material-motion-runtime-objc.git
 
 SPEC CHECKSUMS:
