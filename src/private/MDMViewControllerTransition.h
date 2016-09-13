@@ -24,9 +24,9 @@
 @interface MDMViewControllerTransition : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning>
 
 /** Initializes a newly allocated view controller transition with a given direction and director. */
-- (instancetype)initWithDirector:(nonnull MDMTransitionDirector *)director;
+- (nonnull instancetype)initWithDirector:(nonnull MDMTransitionDirector *)director;
 
 /** Unavailable. Use initWithDirection:director: instead. */
-- (instancetype)init NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
 
 @end
