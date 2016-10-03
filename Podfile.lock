@@ -1,38 +1,32 @@
 PODS:
   - MaterialMotionCoreAnimationFamily (1.0.0):
-    - MaterialMotionRuntime
-  - MaterialMotionRuntime (2.0.1)
+    - MaterialMotionRuntime (~> 3.0)
+  - MaterialMotionRuntime (3.0.1)
   - MaterialMotionTransitions (1.0.0):
-    - MaterialMotionRuntime
+    - MaterialMotionRuntime (~> 3.0)
 
 DEPENDENCIES:
   - MaterialMotionCoreAnimationFamily (from `https://github.com/material-motion/material-motion-family-coreanimation-swift`, branch `develop`)
-  - MaterialMotionRuntime (from `https://github.com/material-motion/material-motion-runtime-objc.git`, branch `develop`)
+  - MaterialMotionRuntime
   - MaterialMotionTransitions (from `./`)
 
 EXTERNAL SOURCES:
   MaterialMotionCoreAnimationFamily:
     :branch: develop
     :git: https://github.com/material-motion/material-motion-family-coreanimation-swift
-  MaterialMotionRuntime:
-    :branch: develop
-    :git: https://github.com/material-motion/material-motion-runtime-objc.git
   MaterialMotionTransitions:
     :path: "./"
 
 CHECKOUT OPTIONS:
   MaterialMotionCoreAnimationFamily:
-    :commit: 32afdc45ff38ff450d2d84ec34637adc115a024e
+    :commit: be727d7c5dbafb6893afffe61eb350bf4bcff748
     :git: https://github.com/material-motion/material-motion-family-coreanimation-swift
-  MaterialMotionRuntime:
-    :commit: f31cbc6d9b78576e85410b82942a25a53a4e5f6e
-    :git: https://github.com/material-motion/material-motion-runtime-objc.git
 
 SPEC CHECKSUMS:
-  MaterialMotionCoreAnimationFamily: 363b6b0343e46950478ab5487a38445cf966de57
-  MaterialMotionRuntime: 142f75ce2cf2682458aa9631541b8644b653ef34
-  MaterialMotionTransitions: ff2a3d5ec768c61d3d2e9a8b46d31e071119fee7
+  MaterialMotionCoreAnimationFamily: b1510c270b916d14f2d4c40f8d065a2eb2ac7e7d
+  MaterialMotionRuntime: 056ed241097e4f63b7d25a34685d031703689a22
+  MaterialMotionTransitions: 8a782878741f07e841c666e9b0cd0ff53638ad74
 
-PODFILE CHECKSUM: faaf64e18c0090fbd73e5122a3c9a7f6065efa5a
+PODFILE CHECKSUM: c42b6ee941de4048aa47b13f11bd5e3eb0169e70
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2
