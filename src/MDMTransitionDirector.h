@@ -22,11 +22,11 @@ extern const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations;
 
 /** The possible directions of a view controller transition. */
 typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
-  /** The transition is being presented/pushed. */
-  MDMTransitionDirectionPresent,
+  /** The transition is moving forward via a present/push operation. */
+  MDMTransitionDirectionForward,
 
-  /** The transition is being dismissed/popped. */
-  MDMTransitionDirectionDismiss,
+  /** The transition is moving backward via a dismiss/pop operation. */
+  MDMTransitionDirectionBackward,
 } NS_SWIFT_NAME(TransitionDirection);
 
 /**
@@ -51,11 +51,19 @@ NS_SWIFT_NAME(TransitionDirector)
 
 #pragma mark Transition sides
 
-/** The source view controller for this transition. */
-@property(nonatomic, strong, nonnull, readonly) UIViewController *fromViewController;
+/**
+ The back view controller for this transition.
 
-/** The destination view controller for this transition. */
-@property(nonatomic, strong, nonnull, readonly) UIViewController *toViewController;
+ This is the destination when the transition's direction is backward.
+ */
+@property(nonatomic, strong, nonnull, readonly) UIViewController *backViewController;
+
+/**
+ The fore view controller for this transition.
+
+ This is the destination when the transition's direction is forward.
+ */
+@property(nonatomic, strong, nonnull, readonly) UIViewController *foreViewController;
 
 #pragma mark Affecting corresponding UIKit animations
 
@@ -76,7 +84,7 @@ NS_SWIFT_NAME(TransitionDirector)
  @param transaction All motion added to this transaction instance will be committed to the
                     transition's runtime.
  */
-- (void)setUp:(nonnull MDMTransaction *)transaction
-    NS_SWIFT_NAME(setUp(transaction:));
+- (void)setUpWithTransaction:(nonnull MDMTransaction *)transaction
+    NS_SWIFT_NAME(setUpWithTransaction(_:));
 
 @end

@@ -72,7 +72,7 @@
   }
 
   // Ensure that the destination view controller is part of the view hierarchy.
-  if (self.director.initialDirection == MDMTransitionDirectionPresent) {
+  if (self.director.initialDirection == MDMTransitionDirectionForward) {
     [containerView addSubview:toViewController.view];
   } else {
     [containerView insertSubview:toViewController.view atIndex:0];
@@ -90,7 +90,7 @@
   _scheduler.delegate = self;
 
   MDMTransaction *transaction = [MDMTransaction new];
-  [_director setUp:transaction];
+  [_director setUpWithTransaction:transaction];
   [_scheduler commitTransaction:transaction];
 
   if (_scheduler.activityState == MDMSchedulerActivityStateIdle) {

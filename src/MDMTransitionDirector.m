@@ -22,19 +22,19 @@ const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations = 0.3;
 @implementation MDMTransitionDirector
 
 - (nonnull instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection
-                              fromViewController:(UIViewController *)fromViewController
-                                toViewController:(UIViewController *)toViewController {
+                              backViewController:(UIViewController *)backViewController
+                              foreViewController:(UIViewController *)foreViewController {
   self = [super init];
   if (self) {
     _initialDirection = initialDirection;
     _currentDirection = initialDirection;
-    _fromViewController = fromViewController;
-    _toViewController = toViewController;
+    _backViewController = backViewController;
+    _foreViewController = foreViewController;
   }
   return self;
 }
 
-- (void)setUp:(MDMTransaction *)transaction {
+- (void)setUpWithTransaction:(MDMTransaction *)transaction {
   // No-op
 }
 

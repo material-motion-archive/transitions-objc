@@ -46,9 +46,9 @@
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source {
   [self prepareForTransitionWithSourceViewController:source
-                                  fromViewController:presenting
-                                    toViewController:presented
-                                           direction:MDMTransitionDirectionPresent];
+                                  backViewController:presenting
+                                  foreViewController:presented
+                                           direction:MDMTransitionDirectionForward];
   return _transition;
 }
 
@@ -66,9 +66,9 @@
     sourceViewController = [navController.viewControllers lastObject];
   }
   [self prepareForTransitionWithSourceViewController:sourceViewController
-                                  fromViewController:dismissed
-                                    toViewController:dismissed.presentingViewController
-                                           direction:MDMTransitionDirectionDismiss];
+                                  backViewController:dismissed.presentingViewController
+                                  foreViewController:dismissed
+                                           direction:MDMTransitionDirectionBackward];
   return _transition;
 }
 
@@ -89,19 +89,19 @@
 #pragma mark - Private APIs
 
 - (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
-                                  fromViewController:(UIViewController *)fromViewController
-                                    toViewController:(UIViewController *)toViewController
+                                  backViewController:(UIViewController *)backViewController
+                                  foreViewController:(UIViewController *)foreViewController
                                            direction:(MDMTransitionDirection)direction {
   // Dismissing while we're in another transition is fine.
-  if (direction == MDMTransitionDirectionDismiss) {
+  if (direction == MDMTransitionDirectionBackward) {
     _transition = nil;
   }
   NSAssert(!_transition, @"Transition already active!");
 
   if (self.directorClass) {
     MDMTransitionDirector *director = [[self.directorClass alloc] initWithInitialDirection:direction
-                                                                        fromViewController:fromViewController
-                                                                          toViewController:toViewController];
+                                                                        backViewController:backViewController
+                                                                        foreViewController:foreViewController];
     _transition = [[MDMViewControllerTransition alloc] initWithDirector:director];
   }
 }

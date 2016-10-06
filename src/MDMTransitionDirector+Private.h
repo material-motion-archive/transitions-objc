@@ -19,7 +19,8 @@
 @interface MDMTransitionDirector ()
 
 - (nonnull instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection
-                              fromViewController:(nonnull UIViewController *)fromViewController
-                                toViewController:(nonnull UIViewController *)toViewController;
+                              backViewController:(nonnull UIViewController *)backViewController
+                              foreViewController:(nonnull UIViewController *)foreViewController
+    NS_SWIFT_NAME(init(initialDirection:back:fore:));
 
 @end
