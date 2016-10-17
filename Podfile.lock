@@ -17,8 +17,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   MaterialMotionCoreAnimationFamily: e17b091eb7b9a77bc673695837260dac0d34a03b
   MaterialMotionRuntime: 0542afcb0329e032f198d711941fc667f42cc0a2
-  MaterialMotionTransitions: 23bea5607154f355ae7c491815529e3223826356
+  MaterialMotionTransitions: 5b27f0fc9638b17e8de7c6702d2a6f7d7dfafbca
 
-PODFILE CHECKSUM: 12fabd987c21d546b37d789baa99f4b57f9aff76
+PODFILE CHECKSUM: 5f22ba6b04602e7f8fca613ec6756afe35b0fc18
 
 COCOAPODS: 1.1.0.rc.3
