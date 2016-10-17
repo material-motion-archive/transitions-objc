@@ -20,16 +20,15 @@ import MaterialMotionCoreAnimationFamily
 
 class FadeInTransitionDirector: TransitionDirector {
 
-  override func setUpWithTransaction(_ transaction: Transaction) {
-    let animation = CABasicAnimation(keyPath: "opacity")
-    animation.duration = transitionDurationForUIKitAnimations()
+  override func setUp() {
+    let animation = Tween("opacity", duration: transitionDurationForUIKitAnimations())
     if self.initialDirection == .forward {
-      animation.fromValue = NSNumber(value: 0)
-      animation.toValue = NSNumber(value: 1)
+      animation.from = NSNumber(value: 0)
+      animation.to = NSNumber(value: 1)
     } else {
-      animation.fromValue = NSNumber(value: 1)
-      animation.toValue = NSNumber(value: 0)
+      animation.from = NSNumber(value: 1)
+      animation.to = NSNumber(value: 0)
     }
-    transaction.add(plan: animation, to: foreViewController.view)
+    addPlan(animation, to: foreViewController.view)
   }
 }

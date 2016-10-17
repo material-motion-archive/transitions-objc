@@ -2,7 +2,7 @@ abstract_target 'MaterialMotionTransitions' do
   pod 'MaterialMotionTransitions', :path => './'
 
   pod 'MaterialMotionRuntime'
-  pod 'MaterialMotionCoreAnimationFamily' , :git => 'https://github.com/material-motion/material-motion-family-coreanimation-swift', :branch => 'develop'
+  pod 'MaterialMotionCoreAnimationFamily'
 
   workspace 'MaterialMotionTransitions.xcworkspace'
   use_frameworks!

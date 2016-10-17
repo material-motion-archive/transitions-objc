@@ -16,6 +16,8 @@
 
 #import "MDMViewControllerTransition.h"
 
+#import "MDMTransitionDirector+Private.h"
+
 @interface MDMViewControllerTransition () <MDMSchedulerDelegate>
 @property(nonatomic, strong) MDMTransitionDirector *director;
 
@@ -89,9 +91,9 @@
   _scheduler = [MDMScheduler new];
   _scheduler.delegate = self;
 
-  MDMTransaction *transaction = [MDMTransaction new];
-  [_director setUpWithTransaction:transaction];
-  [_scheduler commitTransaction:transaction];
+  _director.scheduler = _scheduler;
+
+  [_director setUp];
 
   if (_scheduler.activityState == MDMSchedulerActivityStateIdle) {
     [self schedulerDidIdle];

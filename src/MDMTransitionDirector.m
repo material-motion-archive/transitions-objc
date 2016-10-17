@@ -34,12 +34,19 @@ const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations = 0.3;
   return self;
 }
 
-- (void)setUpWithTransaction:(MDMTransaction *)transaction {
-  // No-op
-}
-
 - (NSTimeInterval)transitionDurationForUIKitAnimations {
   return MDMDefaultTransitionDurationForUIKitAnimations;
+}
+
+- (void)addPlan:(NSObject<MDMPlan> *)plan to:(id)target {
+  NSAssert(self.scheduler != nil, @"No scheduler available.");
+  [self.scheduler addPlan:plan to:target];
+}
+
+#pragma mark - Lifecycle
+
+- (void)setUp {
+  // No-op
 }
 
 @end

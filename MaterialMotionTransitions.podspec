@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.source_files = "src/*.{h,m,mm}", "src/private/*.{h,m,mm}"
   s.header_mappings_dir = "src"
 
-  s.dependency "MaterialMotionRuntime", "~> 3.0"
+  s.dependency "MaterialMotionRuntime", "~> 4.0"
 end

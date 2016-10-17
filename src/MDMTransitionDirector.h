@@ -41,6 +41,12 @@ NS_SWIFT_NAME(TransitionDirector)
 /** Unavailable. Use MDMTransitionController instead. */
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
+#pragma mark Registering plans
+
+/** Associate a plan with a given target. */
+- (void)addPlan:(nonnull NSObject<MDMPlan> *)plan to:(nonnull id)target
+    NS_SWIFT_NAME(addPlan(_:to:));
+
 #pragma mark Transition direction
 
 /** The initial direction of this transition. */
@@ -84,7 +90,6 @@ NS_SWIFT_NAME(TransitionDirector)
  @param transaction All motion added to this transaction instance will be committed to the
                     transition's runtime.
  */
-- (void)setUpWithTransaction:(nonnull MDMTransaction *)transaction
-    NS_SWIFT_NAME(setUpWithTransaction(_:));
+- (void)setUp;
 
 @end

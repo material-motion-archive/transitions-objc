@@ -23,4 +23,6 @@
                               foreViewController:(nonnull UIViewController *)foreViewController
     NS_SWIFT_NAME(init(initialDirection:back:fore:));
 
+@property(nonatomic, strong, nullable) MDMScheduler *scheduler;
+
 @end
