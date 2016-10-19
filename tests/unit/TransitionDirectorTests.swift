@@ -28,8 +28,7 @@ class TransitionDirectorTests: XCTestCase {
   func testCallingSetUp() {
     let director = TransitionDirector(initialDirection: .forward, back: UIViewController(), fore: UIViewController())
 
-    let transaction = Transaction()
-    director.setUpWithTransaction(transaction)
+    director.setUp()
   }
 
   func testNonZeroDurationForUIKitAnimations() {
