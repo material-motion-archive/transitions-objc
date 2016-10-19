@@ -21,7 +21,7 @@
 
 #import <objc/runtime.h>
 
-@interface MDMTransitionController ()
+@interface MDMTransitionController () <MDMViewControllerTransitionDelegate>
 
 - (instancetype)initWithViewController:(UIViewController *)viewController;
 
@@ -86,6 +86,12 @@
   return nil;
 }
 
+#pragma mark - MDMViewControllerTransitionDelegate
+
+- (void)transitionDidFinish {
+  self.transition = nil;
+}
+
 #pragma mark - Private APIs
 
 - (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
@@ -103,6 +109,7 @@
                                                                         backViewController:backViewController
                                                                         foreViewController:foreViewController];
     _transition = [[MDMViewControllerTransition alloc] initWithDirector:director];
+    _transition.delegate = self;
   }
 }
 

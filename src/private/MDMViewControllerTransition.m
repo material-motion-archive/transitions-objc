@@ -132,6 +132,8 @@
 
   _director = nil;
   _scheduler = nil;
+
+  [self.delegate transitionDidFinish];
 }
 
 @end

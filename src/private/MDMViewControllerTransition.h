@@ -16,6 +16,14 @@
 
 #import "MDMTransitionDirector.h"
 
+/** The delegate protocol used by MDMViewControllerTransition. */
+@protocol MDMViewControllerTransitionDelegate <NSObject>
+
+/** Invoked once the transition has reached its conclusion. */
+- (void)transitionDidFinish;
+
+@end
+
 /**
  A view controller transition governs the lifecycle of a single UIViewController transition.
 
@@ -28,5 +36,8 @@
 
 /** Unavailable. Use initWithDirection:director: instead. */
 - (nonnull instancetype)init NS_UNAVAILABLE;
+
+/** The delegate can react to events. */
+@property(nonatomic, weak, nullable) id<MDMViewControllerTransitionDelegate> delegate;
 
 @end
