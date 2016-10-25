@@ -23,7 +23,7 @@
 
 @property(nonatomic, strong) MDMScheduler *scheduler;
 
-@property(nonatomic, strong) id<UIViewControllerContextTransitioning> transitioningContext;
+@property(nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 @property(nonatomic, strong) UIViewController *fromViewController;
 @property(nonatomic, strong) UIViewController *toViewController;
 @end
@@ -45,30 +45,38 @@
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-  // no-op because all animating is handled by the performance.
+  self.transitionContext = transitionContext;
+
+  [self initiateTransition];
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted {
   self.fromViewController.view.userInteractionEnabled = YES;
   self.toViewController.view.userInteractionEnabled = YES;
 
-  _transitioningContext = nil;
+  self.transitionContext = nil;
 }
 
-#pragma mark - UIViewControllerInteractiveTransitioning
+#pragma mark - MDMSchedulerDelegate
 
-- (void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-  self.transitioningContext = transitionContext;
+- (void)schedulerActivityStateDidChange:(nonnull MDMScheduler *)scheduler {
+  if (scheduler.activityState == MDMSchedulerActivityStateIdle) {
+    [self schedulerDidIdle];
+  }
+}
 
-  UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-  UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-  UIView *containerView = [transitionContext containerView];
+#pragma mark - Private APIs
 
-  CGRect finalFrame = [transitionContext finalFrameForViewController:fromViewController];
+- (void)initiateTransition {
+  UIViewController *fromViewController = [self.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  UIViewController *toViewController = [self.transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+  UIView *containerView = [self.transitionContext containerView];
+
+  CGRect finalFrame = [self.transitionContext finalFrameForViewController:fromViewController];
   if (!CGRectIsEmpty(finalFrame)) {
     fromViewController.view.frame = finalFrame;
   }
-  finalFrame = [transitionContext finalFrameForViewController:toViewController];
+  finalFrame = [self.transitionContext finalFrameForViewController:toViewController];
   if (!CGRectIsEmpty(finalFrame)) {
     toViewController.view.frame = finalFrame;
   }
@@ -100,35 +108,25 @@
   }
 }
 
-#pragma mark - MDMSchedulerDelegate
-
-- (void)schedulerActivityStateDidChange:(nonnull MDMScheduler *)scheduler {
-  if (scheduler.activityState == MDMSchedulerActivityStateIdle) {
-    [self schedulerDidIdle];
-  }
-}
-
-#pragma mark - Private APIs
-
 - (void)schedulerDidIdle {
   BOOL completedInOriginalDirection = _director.currentDirection == _director.initialDirection;
   // UIKit container view controllers will replay their transition animation if the transition
   // percentage is exactly 0 or 1, so we fake being super close to these values in order to avoid
   // this flickering animation.
   if (completedInOriginalDirection) {
-    [_transitioningContext updateInteractiveTransition:0.999f];
-    [_transitioningContext finishInteractiveTransition];
+    [_transitionContext updateInteractiveTransition:0.999f];
+    [_transitionContext finishInteractiveTransition];
 
   } else {
-    [_transitioningContext updateInteractiveTransition:0.001f];
-    [_transitioningContext cancelInteractiveTransition];
+    [_transitionContext updateInteractiveTransition:0.001f];
+    [_transitionContext cancelInteractiveTransition];
   }
 
-  NSAssert(_transitioningContext, @"Transitioning context unavailable in %@::%@",
+  NSAssert(_transitionContext, @"Transitioning context unavailable in %@::%@",
            NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 
   // Ultimately calls -animationEnded:
-  [_transitioningContext completeTransition:completedInOriginalDirection];
+  [_transitionContext completeTransition:completedInOriginalDirection];
 
   _director = nil;
   _scheduler = nil;

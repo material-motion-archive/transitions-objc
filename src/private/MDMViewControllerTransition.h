@@ -29,7 +29,7 @@
 
  This object is a bridge between MDMTransitionController and the Material Motion Runtime.
  */
-@interface MDMViewControllerTransition : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning>
+@interface MDMViewControllerTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
 /** Initializes a newly allocated view controller transition with a given direction and director. */
 - (nonnull instancetype)initWithDirector:(nonnull MDMTransitionDirector *)director;

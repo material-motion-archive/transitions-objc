@@ -72,20 +72,6 @@
   return _transition;
 }
 
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
-  if (animator == _transition) {
-    return _transition;
-  }
-  return nil;
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-  if (animator == _transition) {
-    return _transition;
-  }
-  return nil;
-}
-
 #pragma mark - MDMViewControllerTransitionDelegate
 
 - (void)transitionDidFinish {
