@@ -1,5 +1,5 @@
 abstract_target 'MaterialMotionTransitions' do
-  pod 'MaterialMotionRuntime'
+  pod 'MaterialMotionRuntime', :git => 'https://github.com/material-motion/material-motion-runtime-objc.git', :branch => 'develop'
   pod 'MaterialMotionCoreAnimationFamily'
 
   pod 'MaterialMotionTransitions', :path => './'
