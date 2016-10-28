@@ -15,6 +15,7 @@
  */
 
 #import "MDMReplicaController.h"
+#import "MDMTransition.h"
 #import "MDMTransitionController.h"
 #import "MDMTransitionDirector.h"
 
