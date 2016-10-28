@@ -15,78 +15,43 @@
  */
 
 import XCTest
+import MaterialMotionCoreAnimationFamily
 import MaterialMotionTransitions
 
-class TransitionTests: XCTestCase {
-
-  var window: UIWindow! = nil
-
-  override func setUp() {
-    super.setUp()
-
-    window = UIWindow()
-    window.rootViewController = UIViewController()
-    window.rootViewController!.view.backgroundColor = .blue
-    window.makeKeyAndVisible()
-    window.layer.speed = 100
+private class ChangeState: NSObject, Plan {
+  func performerClass() -> AnyClass {
+    return Performer.self
   }
 
-  //MARK: - No director
-
-  func testNoDirectorPresentTransition() {
-    let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red
-
-    let _ = toPresent.mdm_transitionController
-
-    let expect = expectation(description: "Did present")
-    window.rootViewController!.present(toPresent, animated: true) {
-      expect.fulfill()
-    }
-    waitForExpectations(timeout: 1)
+  func copy(with zone: NSZone? = nil) -> Any {
+    return ChangeState()
   }
 
-  func testNoDirectorDismissTransition() {
-    let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red
-
-    let _ = toPresent.mdm_transitionController
-
-    let expect = expectation(description: "Did present")
-    window.rootViewController!.present(toPresent, animated: false)
-    toPresent.dismiss(animated: true) {
-      expect.fulfill()
+  private class Performer: NSObject, Performing {
+    let target: State
+    required init(target: Any) {
+      self.target = target as! State
     }
-    waitForExpectations(timeout: 1)
-  }
 
-  //MARK: - Simple director
-
-  func testSimpleDirectorPresentTransition() {
-    let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red
-
-    toPresent.mdm_transitionController.directorClass = EmptyDirector.self
-
-    let expect = expectation(description: "Did present")
-    window.rootViewController!.present(toPresent, animated: true) {
-      expect.fulfill()
+    func addPlan(_ plan: Plan) {
+      target.boolean = true
     }
-    waitForExpectations(timeout: 1)
-  }
-
-  // Litmus test for vanilla UIKit transitions
-  func testBasicUIKitTransition() {
-    let toPresent = UIViewController()
-    toPresent.view.backgroundColor = .red
-
-    let expect = expectation(description: "Did present")
-    window.rootViewController!.present(toPresent, animated: true) {
-      expect.fulfill()
-    }
-    waitForExpectations(timeout: 1)
   }
 }
 
-class EmptyDirector: TransitionDirector {
+private class State {
+  var boolean = false
+}
+
+class TransitionTests: XCTestCase {
+
+  func testInitialization() {
+    let timeWindow = TimeWindow(initialDirection: .forward, duration: 0.3)
+    let transition = Transition(timeWindow: timeWindow,
+                                back: .init(),
+                                fore: .init())
+    XCTAssertNotNil(transition.backViewController)
+    XCTAssertNotNil(transition.foreViewController)
+    XCTAssertEqual(transition.window, timeWindow)
+  }
 }
