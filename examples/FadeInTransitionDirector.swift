@@ -34,6 +34,6 @@ class FadeInTransitionDirector: NSObject, TransitionDirector {
       animation.from = NSNumber(value: 1)
       animation.to = NSNumber(value: 0)
     }
-    transition.scheduler.addPlan(animation, to: transition.foreViewController.view)
+    transition.runtime.addPlan(animation, to: transition.foreViewController.view)
   }
 }

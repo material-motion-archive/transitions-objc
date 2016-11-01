@@ -21,9 +21,9 @@
 
 const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
 
-@interface MDMTransition () <MDMSchedulerDelegate>
+@interface MDMTransition () <MDMRuntimeDelegate>
 
-@property(nonatomic, strong) MDMScheduler *scheduler;
+@property(nonatomic, strong) MDMRuntime *runtime;
 @property(nonatomic, strong) id<MDMTransitionDirector> director;
 @property(nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 
@@ -49,8 +49,8 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
     _backViewController = backViewController;
     _foreViewController = foreViewController;
 
-    _scheduler = [MDMScheduler new];
-    _scheduler.delegate = self;
+    _runtime = [MDMRuntime new];
+    _runtime.delegate = self;
   }
   return self;
 }
@@ -76,9 +76,9 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
 
 #pragma mark - MDMSchedulerDelegate
 
-- (void)schedulerActivityStateDidChange:(MDMScheduler *)scheduler {
-  if (scheduler.activityState == MDMSchedulerActivityStateIdle) {
-    [self schedulerDidIdle];
+- (void)runtimeActivityStateDidChange:(MDMRuntime *)runtime {
+  if (runtime.activityState == MDMRuntimeActivityStateIdle) {
+    [self runtimeDidIdle];
   }
 }
 
@@ -114,12 +114,12 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
 
   [self.director setUp];
 
-  if (self.scheduler.activityState == MDMSchedulerActivityStateIdle) {
-    [self schedulerDidIdle];
+  if (self.runtime.activityState == MDMRuntimeActivityStateIdle) {
+    [self runtimeDidIdle];
   }
 }
 
-- (void)schedulerDidIdle {
+- (void)runtimeDidIdle {
   BOOL completedInOriginalDirection = self.window.currentDirection == self.window.initialDirection;
   // UIKit container view controllers will replay their transition animation if the transition
   // percentage is exactly 0 or 1, so we fake being super close to these values in order to avoid
@@ -138,7 +138,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
   // Ultimately calls -animationEnded:
   [self.transitionContext completeTransition:completedInOriginalDirection];
 
-  self.scheduler = nil;
+  self.runtime = nil;
   self.director = nil;
 
   [self.delegate transitionDidComplete:self];
