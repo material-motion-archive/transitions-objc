@@ -14,11 +14,24 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
 #import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+@implementation MDMTimeWindow
+
+- (instancetype)initWithInitialDirection:(MDMTimeWindowDirection)initialDirection
+                                duration:(NSTimeInterval)duration {
+  self = [super init];
+  if (self) {
+    _initialDirection = initialDirection;
+    _duration = duration;
+
+    _currentDirection = initialDirection;
+
+    if (_initialDirection == MDMTimeWindowDirectionBackward) {
+      _position = 1;
+    }
+  }
+  return self;
+}
+
+@end

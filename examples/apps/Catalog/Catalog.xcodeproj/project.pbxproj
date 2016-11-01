@@ -12,6 +12,8 @@
 		6625A5551D46821E00FD10F7 /* FadeInTransitionDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6625A5541D46821E00FD10F7 /* FadeInTransitionDirector.swift */; };
 		662EC1511D412913007E5516 /* ViewControllerTransitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662EC1501D412913007E5516 /* ViewControllerTransitionTests.swift */; };
 		6631590E1D3EB9A700AED94F /* ReplicaControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6631590D1D3EB9A700AED94F /* ReplicaControllerTests.swift */; };
+		664A5AB11DC93B450082B5DF /* TimeWindowSegmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A5AAF1DC93B450082B5DF /* TimeWindowSegmentTests.swift */; };
+		664A5AB21DC93B450082B5DF /* TimeWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664A5AB01DC93B450082B5DF /* TimeWindowTests.swift */; };
 		666FAA841D384A6B000363DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAA831D384A6B000363DA /* AppDelegate.swift */; };
 		666FAA861D384A6B000363DA /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666FAA851D384A6B000363DA /* ExampleViewController.swift */; };
 		666FAA8B1D384A6B000363DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 666FAA8A1D384A6B000363DA /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		6625A5541D46821E00FD10F7 /* FadeInTransitionDirector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInTransitionDirector.swift; sourceTree = "<group>"; };
 		662EC1501D412913007E5516 /* ViewControllerTransitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTransitionTests.swift; sourceTree = "<group>"; };
 		6631590D1D3EB9A700AED94F /* ReplicaControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplicaControllerTests.swift; sourceTree = "<group>"; };
+		664A5AAF1DC93B450082B5DF /* TimeWindowSegmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeWindowSegmentTests.swift; sourceTree = "<group>"; };
+		664A5AB01DC93B450082B5DF /* TimeWindowTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeWindowTests.swift; sourceTree = "<group>"; };
 		666FAA801D384A6B000363DA /* Catalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Catalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		666FAA831D384A6B000363DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Catalog/AppDelegate.swift; sourceTree = "<group>"; };
 		666FAA851D384A6B000363DA /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
@@ -127,10 +131,12 @@
 		666FAA971D384A6B000363DA /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				666FAAA81D384D52000363DA /* TransitionControllerTests.swift */,
 				6631590D1D3EB9A700AED94F /* ReplicaControllerTests.swift */,
-				662EC1501D412913007E5516 /* ViewControllerTransitionTests.swift */,
+				664A5AAF1DC93B450082B5DF /* TimeWindowSegmentTests.swift */,
+				664A5AB01DC93B450082B5DF /* TimeWindowTests.swift */,
+				666FAAA81D384D52000363DA /* TransitionControllerTests.swift */,
 				66D97C931DC3AA8F000D7FB0 /* TransitionTests.swift */,
+				662EC1501D412913007E5516 /* ViewControllerTransitionTests.swift */,
 			);
 			name = tests;
 			path = ../../../tests/unit;
@@ -395,7 +401,9 @@
 			files = (
 				6631590E1D3EB9A700AED94F /* ReplicaControllerTests.swift in Sources */,
 				662EC1511D412913007E5516 /* ViewControllerTransitionTests.swift in Sources */,
+				664A5AB11DC93B450082B5DF /* TimeWindowSegmentTests.swift in Sources */,
 				666FAAA91D384D52000363DA /* TransitionControllerTests.swift in Sources */,
+				664A5AB21DC93B450082B5DF /* TimeWindowTests.swift in Sources */,
 				66D97C941DC3AA8F000D7FB0 /* TransitionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
