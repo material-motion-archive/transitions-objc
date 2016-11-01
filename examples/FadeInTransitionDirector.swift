@@ -18,17 +18,22 @@ import UIKit
 import MaterialMotionTransitions
 import MaterialMotionCoreAnimationFamily
 
-class FadeInTransitionDirector: TransitionDirector {
+class FadeInTransitionDirector: NSObject, TransitionDirector {
 
-  override func setUp() {
-    let animation = Tween("opacity", duration: transitionDurationForUIKitAnimations())
-    if self.initialDirection == .forward {
+  let transition: Transition
+  required init(transition: Transition) {
+    self.transition = transition
+  }
+
+  func setUp() {
+    let animation = Tween("opacity", duration: transition.window.duration)
+    if transition.window.initialDirection == .forward {
       animation.from = NSNumber(value: 0)
       animation.to = NSNumber(value: 1)
     } else {
       animation.from = NSNumber(value: 1)
       animation.to = NSNumber(value: 0)
     }
-    addPlan(animation, to: foreViewController.view)
+    transition.scheduler.addPlan(animation, to: transition.foreViewController.view)
   }
 }

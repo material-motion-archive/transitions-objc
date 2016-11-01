@@ -16,12 +16,21 @@
 
 #import "MDMTransition.h"
 
-@interface MDMTransition ()
+@protocol MDMTransitionDelegate <NSObject>
 
-- (nonnull instancetype)initWithTimeWindow:(nonnull MDMTimeWindow *)window
-                        backViewController:(nonnull UIViewController *)backViewController
-                        foreViewController:(nonnull UIViewController *)foreViewController
+- (void)transitionDidComplete:(nonnull MDMTransition *)transition;
+
+@end
+
+@interface MDMTransition () <UIViewControllerAnimatedTransitioning>
+
+- (nonnull instancetype)initWithDirectorClass:(nonnull Class)directorClass
+                                    direction:(MDMTimeWindowDirection)direction
+                           backViewController:(nonnull UIViewController *)backViewController
+                           foreViewController:(nonnull UIViewController *)foreViewController
     NS_DESIGNATED_INITIALIZER
-    NS_SWIFT_NAME(init(timeWindow:back:fore:));
+    NS_SWIFT_NAME(init(directorClass:timeWindow:back:fore:));
+
+@property(nonatomic, weak, nullable) id<MDMTransitionDelegate> delegate;
 
 @end

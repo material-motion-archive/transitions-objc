@@ -17,26 +17,131 @@
 #import "MDMTransition.h"
 #import "MDMTransition+Private.h"
 
-@interface MDMTransition ()
+#import "MDMTransitionDirector.h"
+
+const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
+
+@interface MDMTransition () <MDMSchedulerDelegate>
 
 @property(nonatomic, strong) MDMScheduler *scheduler;
+@property(nonatomic, strong) id<MDMTransitionDirector> director;
+@property(nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 
 @end
 
 @implementation MDMTransition
 
-- (instancetype)initWithTimeWindow:(MDMTimeWindow *)window
-                backViewController:(UIViewController *)backViewController
-                foreViewController:(UIViewController *)foreViewController {
+- (instancetype)initWithDirectorClass:(Class)directorClass
+                            direction:(MDMTimeWindowDirection)direction
+                   backViewController:(UIViewController *)backViewController
+                   foreViewController:(UIViewController *)foreViewController {
   self = [super init];
   if (self) {
-    _window = window;
+    _director = [[directorClass alloc] initWithTransition:self];
+
+    NSTimeInterval transitionDuration = MDMTransitionDirectorTransitionDurationDefault;
+    if ([directorClass respondsToSelector:@selector(transitionDuration)]) {
+      transitionDuration = [directorClass transitionDuration];
+    }
+
+    _window = [[MDMTimeWindow alloc] initWithInitialDirection:direction
+                                                     duration:transitionDuration];
     _backViewController = backViewController;
     _foreViewController = foreViewController;
 
     _scheduler = [MDMScheduler new];
+    _scheduler.delegate = self;
   }
   return self;
+}
+
+#pragma mark - UIViewControllerAnimatedTransitioning
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
+  return self.window.duration;
+}
+
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+  self.transitionContext = transitionContext;
+
+  [self initiateTransition];
+}
+
+- (void)animationEnded:(BOOL)transitionCompleted {
+  self.foreViewController.view.userInteractionEnabled = YES;
+  self.backViewController.view.userInteractionEnabled = YES;
+
+  self.transitionContext = nil;
+}
+
+#pragma mark - MDMSchedulerDelegate
+
+- (void)schedulerActivityStateDidChange:(MDMScheduler *)scheduler {
+  if (scheduler.activityState == MDMSchedulerActivityStateIdle) {
+    [self schedulerDidIdle];
+  }
+}
+
+#pragma mark - Private APIs
+
+- (void)initiateTransition {
+  // We use to/from here instead of back/fore simply to make it easier to work with the UIKit APIs.
+
+  // Ensure that final frames are assigned to the view controllers.
+  UIViewController *fromViewController = [self.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  UIViewController *toViewController = [self.transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+  CGRect finalFrame = [self.transitionContext finalFrameForViewController:fromViewController];
+  if (!CGRectIsEmpty(finalFrame)) {
+    fromViewController.view.frame = finalFrame;
+  }
+  finalFrame = [self.transitionContext finalFrameForViewController:toViewController];
+  if (!CGRectIsEmpty(finalFrame)) {
+    toViewController.view.frame = finalFrame;
+  }
+
+  // Ensure that the destination view controller is part of the view hierarchy.
+  UIView *containerView = [self.transitionContext containerView];
+  if (self.window.initialDirection == MDMTimeWindowDirectionForward) {
+    [containerView addSubview:toViewController.view];
+  } else {
+    [containerView insertSubview:toViewController.view atIndex:0];
+  }
+  [toViewController.view layoutIfNeeded];
+
+  // Re-enabled in -animationEnded:
+  self.backViewController.view.userInteractionEnabled = NO;
+  self.foreViewController.view.userInteractionEnabled = NO;
+
+  [self.director setUp];
+
+  if (self.scheduler.activityState == MDMSchedulerActivityStateIdle) {
+    [self schedulerDidIdle];
+  }
+}
+
+- (void)schedulerDidIdle {
+  BOOL completedInOriginalDirection = self.window.currentDirection == self.window.initialDirection;
+  // UIKit container view controllers will replay their transition animation if the transition
+  // percentage is exactly 0 or 1, so we fake being super close to these values in order to avoid
+  // this flickering animation.
+  if (completedInOriginalDirection) {
+    [self.transitionContext updateInteractiveTransition:0.999f];
+    [self.transitionContext finishInteractiveTransition];
+  } else {
+    [self.transitionContext updateInteractiveTransition:0.001f];
+    [self.transitionContext cancelInteractiveTransition];
+  }
+
+  NSAssert(self.transitionContext, @"Transitioning context unavailable in %@::%@",
+           NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+
+  // Ultimately calls -animationEnded:
+  [self.transitionContext completeTransition:completedInOriginalDirection];
+
+  self.scheduler = nil;
+  self.director = nil;
+
+  [self.delegate transitionDidComplete:self];
 }
 
 @end

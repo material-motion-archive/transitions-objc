@@ -46,12 +46,12 @@ private class State {
 class TransitionTests: XCTestCase {
 
   func testInitialization() {
-    let timeWindow = TimeWindow(initialDirection: .forward, duration: 0.3)
-    let transition = Transition(timeWindow: timeWindow,
+    let transition = Transition(directorClass: EmptyDirector.self,
+                                timeWindow: .forward,
                                 back: .init(),
                                 fore: .init())
     XCTAssertNotNil(transition.backViewController)
     XCTAssertNotNil(transition.foreViewController)
-    XCTAssertEqual(transition.window, timeWindow)
+    XCTAssertEqual(transition.window.currentDirection, .forward)
   }
 }

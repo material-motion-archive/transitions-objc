@@ -88,5 +88,12 @@ class ViewControllerTransitionTests: XCTestCase {
   }
 }
 
-class EmptyDirector: TransitionDirector {
+class EmptyDirector: NSObject, TransitionDirector {
+  let transition: Transition
+  required init(transition: Transition) {
+    self.transition = transition
+  }
+
+  func setUp() {
+  }
 }

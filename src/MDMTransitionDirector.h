@@ -17,17 +17,12 @@
 #import <MaterialMotionRuntime/MaterialMotionRuntime.h>
 #import <UIKit/UIKit.h>
 
-/** The default duration of a Material Motion view controller transition in seconds. */
-extern const NSTimeInterval MDMDefaultTransitionDurationForUIKitAnimations;
+/**
+ The default duration used for a transition if the director does not implement +transitionDuration.
+ */
+extern const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault;
 
-/** The possible directions of a view controller transition. */
-typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
-  /** The transition is moving forward via a present/push operation. */
-  MDMTransitionDirectionForward,
-
-  /** The transition is moving backward via a dismiss/pop operation. */
-  MDMTransitionDirectionBackward,
-} NS_SWIFT_NAME(TransitionDirection);
+@class MDMTransition;
 
 /**
  A transition director is responsible for describing the motion that will occur during a
@@ -36,49 +31,10 @@ typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
  This object is intended to be subclassed.
  */
 NS_SWIFT_NAME(TransitionDirector)
-@interface MDMTransitionDirector : NSObject
+@protocol MDMTransitionDirector <NSObject>
 
-/** Unavailable. Use MDMTransitionController instead. */
-- (nonnull instancetype)init NS_UNAVAILABLE;
-
-#pragma mark Registering plans
-
-/** Associate a plan with a given target. */
-- (void)addPlan:(nonnull NSObject<MDMPlan> *)plan to:(nonnull id)target
-    NS_SWIFT_NAME(addPlan(_:to:));
-
-#pragma mark Transition direction
-
-/** The initial direction of this transition. */
-@property(nonatomic, assign, readonly) MDMTransitionDirection initialDirection;
-
-/** The current direction of this transition. */
-@property(nonatomic, assign, readonly) MDMTransitionDirection currentDirection;
-
-#pragma mark Transition sides
-
-/**
- The back view controller for this transition.
-
- This is the destination when the transition's direction is backward.
- */
-@property(nonatomic, strong, nonnull, readonly) UIViewController *backViewController;
-
-/**
- The fore view controller for this transition.
-
- This is the destination when the transition's direction is forward.
- */
-@property(nonatomic, strong, nonnull, readonly) UIViewController *foreViewController;
-
-#pragma mark Affecting corresponding UIKit animations
-
-/**
- The desired duration of corresponding UIKit animations for this transition in seconds.
-
- Default: MDMDefaultTransitionDurationForUIKitAnimations
- */
-- (NSTimeInterval)transitionDurationForUIKitAnimations;
+/** Initializes a director with a Transition instance. */
+- (nonnull instancetype)initWithTransition:(nonnull MDMTransition *)transition;
 
 #pragma mark Set up phase
 
@@ -88,8 +44,15 @@ NS_SWIFT_NAME(TransitionDirector)
  This method should be overwritten by the subclass.
 
  @param transaction All motion added to this transaction instance will be committed to the
-                    transition's runtime.
+ transition's runtime.
  */
 - (void)setUp;
+
+#pragma mark Transition duration
+
+@optional
+
+/** The desired duration to be communicated to UIKit. */
++ (NSTimeInterval)transitionDuration;
 
 @end

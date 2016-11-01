@@ -16,17 +16,18 @@
 
 #import "MDMTransitionController.h"
 
-#import "MDMTransitionDirector+Private.h"
-#import "MDMViewControllerTransition.h"
+#import "MDMTransition+Private.h"
+#import "MDMTransitionDirector.h"
 
 #import <objc/runtime.h>
 
-@interface MDMTransitionController () <MDMViewControllerTransitionDelegate>
+@interface MDMTransitionController () <MDMTransitionDelegate>
 
 - (instancetype)initWithViewController:(UIViewController *)viewController;
 
 @property(nonatomic, weak) UIViewController *associatedViewController;
-@property(nonatomic, strong) MDMViewControllerTransition *transition;
+
+@property(nonatomic, strong) MDMTransition *activeTransition;
 
 @end
 
@@ -48,8 +49,8 @@
   [self prepareForTransitionWithSourceViewController:source
                                   backViewController:presenting
                                   foreViewController:presented
-                                           direction:MDMTransitionDirectionForward];
-  return _transition;
+                                           direction:MDMTimeWindowDirectionForward];
+  return self.activeTransition;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
@@ -68,14 +69,14 @@
   [self prepareForTransitionWithSourceViewController:sourceViewController
                                   backViewController:dismissed.presentingViewController
                                   foreViewController:dismissed
-                                           direction:MDMTransitionDirectionBackward];
-  return _transition;
+                                           direction:MDMTimeWindowDirectionBackward];
+  return self.activeTransition;
 }
 
-#pragma mark - MDMViewControllerTransitionDelegate
+#pragma mark - MDMTransitionDelegate
 
-- (void)transitionDidFinish {
-  self.transition = nil;
+- (void)transitionDidComplete:(MDMTransition *)transition {
+  self.activeTransition = nil;
 }
 
 #pragma mark - Private APIs
@@ -83,19 +84,18 @@
 - (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
                                   backViewController:(UIViewController *)backViewController
                                   foreViewController:(UIViewController *)foreViewController
-                                           direction:(MDMTransitionDirection)direction {
+                                           direction:(MDMTimeWindowDirection)direction {
   // Dismissing while we're in another transition is fine.
-  if (direction == MDMTransitionDirectionBackward) {
-    _transition = nil;
+  if (direction == MDMTimeWindowDirectionBackward) {
+    self.activeTransition = nil;
   }
-  NSAssert(!_transition, @"Transition already active!");
+  NSAssert(!self.activeTransition, @"Transition already active!");
 
   if (self.directorClass) {
-    MDMTransitionDirector *director = [[self.directorClass alloc] initWithInitialDirection:direction
-                                                                        backViewController:backViewController
-                                                                        foreViewController:foreViewController];
-    _transition = [[MDMViewControllerTransition alloc] initWithDirector:director];
-    _transition.delegate = self;
+    self.activeTransition = [[MDMTransition alloc] initWithDirectorClass:self.directorClass
+                                                               direction:direction
+                                                      backViewController:backViewController
+                                                      foreViewController:foreViewController];
   }
 }
 
