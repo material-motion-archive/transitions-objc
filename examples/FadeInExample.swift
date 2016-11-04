@@ -17,7 +17,7 @@
 import UIKit
 import MaterialMotionTransitions
 
-class ExampleViewController: UIViewController {
+class FadeInExampleViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,7 +28,7 @@ class ExampleViewController: UIViewController {
   }
 
   func didTap() {
-    let vc = ExampleViewController()
+    let vc = FadeInExampleViewController()
     vc.view.backgroundColor = .red
 
     let nc = UINavigationController(rootViewController: vc)

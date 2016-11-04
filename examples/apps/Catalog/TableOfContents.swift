@@ -14,22 +14,10 @@
  limitations under the License.
  */
 
-import XCTest
-import MaterialMotionTransitions
+// MARK: Catalog by convention
 
-class TimeWindowTests: XCTestCase {
-
-  func testForwardInitialValues() {
-    let window = TimeWindow(initialDirection: .forward, duration: 0.3)
-    XCTAssertEqual(window.currentDirection, .forward)
-    XCTAssertEqual(window.initialDirection, .forward)
-    XCTAssertEqual(window.position, 0)
-  }
-
-  func testBackwardInitialValues() {
-    let window = TimeWindow(initialDirection: .backward, duration: 0.3)
-    XCTAssertEqual(window.currentDirection, .backward)
-    XCTAssertEqual(window.initialDirection, .backward)
-    XCTAssertEqual(window.position, 1)
+extension FadeInExampleViewController {
+  class func catalogBreadcrumbs() -> [String] {
+    return ["1. Fade in"]
   }
 }

@@ -16,6 +16,8 @@
 
 #import <MaterialMotionRuntime/MaterialMotionRuntime.h>
 
+@class MDMTimeWindow;
+
 /** A Transition object represents the essential state for a UIViewController transition. */
 NS_SWIFT_NAME(Transition)
 @interface MDMTransition : NSObject

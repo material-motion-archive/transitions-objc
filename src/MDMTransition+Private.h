@@ -16,6 +16,8 @@
 
 #import "MDMTransition.h"
 
+#import "MDMTimeWindow.h"
+
 @protocol MDMTransitionDelegate <NSObject>
 
 - (void)transitionDidComplete:(nonnull MDMTransition *)transition;

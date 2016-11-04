@@ -1,32 +1,27 @@
 PODS:
-  - MaterialMotionCoreAnimationFamily (1.0.0):
-    - MaterialMotionRuntime (~> 4.0)
-  - MaterialMotionRuntime (4.0.0)
+  - CatalogByConvention (2.0.0)
+  - MaterialMotionCoreAnimationFamily (1.1.0):
+    - MaterialMotionRuntime (< 6.0, >= 4.0)
+  - MaterialMotionRuntime (5.0.0)
   - MaterialMotionTransitions (1.0.0):
-    - MaterialMotionRuntime (~> 4.0)
+    - MaterialMotionRuntime (~> 5.0)
 
 DEPENDENCIES:
+  - CatalogByConvention
   - MaterialMotionCoreAnimationFamily
-  - MaterialMotionRuntime (from `https://github.com/material-motion/material-motion-runtime-objc.git`, branch `develop`)
+  - MaterialMotionRuntime (~> 5.0)
   - MaterialMotionTransitions (from `./`)
 
 EXTERNAL SOURCES:
-  MaterialMotionRuntime:
-    :branch: develop
-    :git: https://github.com/material-motion/material-motion-runtime-objc.git
   MaterialMotionTransitions:
     :path: "./"
 
-CHECKOUT OPTIONS:
-  MaterialMotionRuntime:
-    :commit: 1faad0f00a6cd9dfce951cdcc3fc4d1a86e76cd3
-    :git: https://github.com/material-motion/material-motion-runtime-objc.git
-
 SPEC CHECKSUMS:
-  MaterialMotionCoreAnimationFamily: e17b091eb7b9a77bc673695837260dac0d34a03b
-  MaterialMotionRuntime: 0542afcb0329e032f198d711941fc667f42cc0a2
-  MaterialMotionTransitions: 5b27f0fc9638b17e8de7c6702d2a6f7d7dfafbca
+  CatalogByConvention: be55c2263132e4f9f59299ac8a528ee8715b3275
+  MaterialMotionCoreAnimationFamily: 5ac1dcde3b9a5162a02d7a3d7ead5e4c6c61c41a
+  MaterialMotionRuntime: 620695e40aaf12f728342cef0b784b1d3eaa1125
+  MaterialMotionTransitions: 58cea2613b0d05e81cc1039c0c86984e74713bcb
 
-PODFILE CHECKSUM: bf54e9da0bbe48470925db9e3e3e0f74b402f8e8
+PODFILE CHECKSUM: 05c47874f772d3c1b7e4f8678fef0159f18ec2ee
 
 COCOAPODS: 1.1.1

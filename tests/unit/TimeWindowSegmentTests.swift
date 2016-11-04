@@ -15,7 +15,7 @@
  */
 
 import XCTest
-import MaterialMotionRuntime
+import MaterialMotionTransitions
 
 class TimeWindowSegmentTests: XCTestCase {
 
