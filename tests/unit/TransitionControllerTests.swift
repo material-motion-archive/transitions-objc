@@ -14,11 +14,16 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
+import XCTest
+import UIKit
+import MaterialMotionTransitions
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+class TransitionControllerTests: XCTestCase {
+
+  func testTransitioningDelegateAssignment() {
+    let viewController = UIViewController()
+    let transitionController = viewController.mdm_transitionController
+
+    XCTAssertTrue(viewController.transitioningDelegate! === transitionController)
+  }
+}

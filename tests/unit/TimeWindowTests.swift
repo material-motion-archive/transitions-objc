@@ -14,11 +14,22 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
+import XCTest
+import MaterialMotionTransitions
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+class TimeWindowTests: XCTestCase {
+
+  func testForwardInitialValues() {
+    let window = TimeWindow(initialDirection: .forward, duration: 0.3)
+    XCTAssertEqual(window.currentDirection, .forward)
+    XCTAssertEqual(window.initialDirection, .forward)
+    XCTAssertEqual(window.position, 0)
+  }
+
+  func testBackwardInitialValues() {
+    let window = TimeWindow(initialDirection: .backward, duration: 0.3)
+    XCTAssertEqual(window.currentDirection, .backward)
+    XCTAssertEqual(window.initialDirection, .backward)
+    XCTAssertEqual(window.position, 1)
+  }
+}

@@ -14,11 +14,10 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
+// MARK: Catalog by convention
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+extension FadeInExampleViewController {
+  class func catalogBreadcrumbs() -> [String] {
+    return ["1. Fade in"]
+  }
+}

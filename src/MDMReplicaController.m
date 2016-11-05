@@ -15,10 +15,29 @@
  */
 
 #import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+@implementation MDMReplicaController {
+  NSHashTable *_disabledElements;
+}
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    NSPointerFunctionsOptions options = (NSPointerFunctionsWeakMemory | NSPointerFunctionsObjectPointerPersonality);
+    _disabledElements = [NSHashTable hashTableWithOptions:options];
+  }
+  return self;
+}
+
+- (nullable id)replicateElement:(nonnull id)element {
+  if ([_disabledElements containsObject:element]) {
+    return nil;
+  }
+  return [_delegate replicateElement:element];
+}
+
+- (void)disableReplicationForElement:(nonnull id)element {
+  [_disabledElements addObject:element];
+}
+
+@end

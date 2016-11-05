@@ -14,11 +14,24 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
+import XCTest
+import UIKit
+import MaterialMotionTransitions
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+class ReplicaControllerTests: XCTestCase {
+
+  func testNoReplicationWithoutDelegate() {
+    let replicator = ReplicaController()
+
+    XCTAssertNil(replicator.replicate(element: NSObject()))
+  }
+
+  func testDisableReplication() {
+    let replicator = ReplicaController()
+
+    let object = NSObject()
+    replicator.disableReplication(forElement: object)
+
+    XCTAssertNil(replicator.replicate(element: object))
+  }
+}

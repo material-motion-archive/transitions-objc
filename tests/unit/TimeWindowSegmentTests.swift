@@ -14,11 +14,14 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
+import XCTest
+import MaterialMotionTransitions
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+class TimeWindowSegmentTests: XCTestCase {
+
+  func testCreation() {
+    let _ = TimeWindowSegment()
+    let _ = TimeWindowSegment(position: 0, length: 1)
+    let _ = TimeWindowSegmentEpsilon
+  }
+}
