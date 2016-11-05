@@ -110,7 +110,6 @@ Code snippets:
 ***In Swift:***
 
 ```swift
-
 class <# DirectorName #>TransitionDirector: NSObject, TransitionDirector {
 
   let transition: Transition
@@ -138,6 +137,8 @@ Code snippets:
 ```
 
 ***In Swift:***
+
+```swift
 func setUp() {
   transition.runtime.addPlan(<#T##plan: Plan##Plan#>, to: <#T##Any#>)
 }
