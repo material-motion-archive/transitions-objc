@@ -18,6 +18,6 @@
 
 extension FadeInExampleViewController {
   class func catalogBreadcrumbs() -> [String] {
-    return ["1. Fade in"]
+    return ["1. All transition directors"]
   }
 }

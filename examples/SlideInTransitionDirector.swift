@@ -17,7 +17,7 @@
 import MaterialMotionTransitions
 import MaterialMotionCoreAnimationTransitions
 
-class FadeInTransitionDirector: NSObject, TransitionDirector {
+class SlideInTransitionDirector: NSObject, TransitionDirector {
 
   let transition: Transition
   required init(transition: Transition) {
@@ -25,12 +25,14 @@ class FadeInTransitionDirector: NSObject, TransitionDirector {
   }
 
   func setUp() {
-    let fadeIn = TransitionTween("opacity",
-                                 transition: transition,
-                                 segment: .init(position: 0, length: 1),
-                                 back: NSNumber(value: 0),
-                                 fore: NSNumber(value: 1))
-    fadeIn.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-    transition.runtime.addPlan(fadeIn, to: transition.foreViewController.view.layer)
+    let midY = Double(transition.foreViewController.view.layer.position.y)
+    let height = Double(transition.foreViewController.view.bounds.height)
+    let slide = TransitionTween("position.y",
+                                transition: transition,
+                                segment: .init(position: 0, length: 1),
+                                back: NSNumber(value: midY + height),
+                                fore: NSNumber(value: midY))
+    slide.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+    transition.runtime.addPlan(slide, to: transition.foreViewController.view.layer)
   }
 }
