@@ -1,5 +1,8 @@
 abstract_target 'MaterialMotionTransitions' do
   pod 'MaterialMotionCoreAnimationTransitions'
+  pod 'MaterialMotionPop'
+  pod 'MaterialMotionPopTransitions'
+  pod 'MaterialMotionDirectManipulation'
   pod 'CatalogByConvention'
 
   pod 'MaterialMotionTransitions', :path => './'

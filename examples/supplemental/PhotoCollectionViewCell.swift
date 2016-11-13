@@ -14,16 +14,26 @@
  limitations under the License.
  */
 
-// MARK: Catalog by convention
+import UIKit
 
-extension FadeInExampleViewController {
-  class func catalogBreadcrumbs() -> [String] {
-    return ["1. All transition directors"]
+class PhotoCollectionViewCell: UICollectionViewCell, PhotoTransitionContextView {
+  let imageView = UIImageView()
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+
+    imageView.contentMode = .scaleAspectFill
+    imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    imageView.frame = bounds
+    imageView.clipsToBounds = true
+
+    addSubview(imageView)
   }
-}
 
-extension PhotoAlbumExampleViewController {
-  class func catalogBreadcrumbs() -> [String] {
-    return ["2. Photo album"]
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  func imageViewForTransition() -> UIImageView {
+    return imageView
   }
 }
