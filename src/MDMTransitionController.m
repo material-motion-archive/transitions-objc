@@ -96,6 +96,7 @@
                                                                direction:direction
                                                       backViewController:backViewController
                                                       foreViewController:foreViewController];
+    self.activeTransition.delegate = self;
   }
 }
 
