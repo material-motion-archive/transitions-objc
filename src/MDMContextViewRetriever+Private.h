@@ -15,14 +15,5 @@
  */
 
 #import "MDMContextViewRetriever.h"
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
-#import "MDMTransitionWindow.h"
-#import "MDMTransitionWindowSegment.h"
-#import "MDMViewReplicator.h"
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+FOUNDATION_EXPORT id<MDMContextViewRetriever> _Nonnull MDMContextViewRetrieverForViewController(UIViewController* _Nonnull viewController);
