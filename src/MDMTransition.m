@@ -32,11 +32,12 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 @implementation MDMTransition
 
 - (instancetype)initWithDirectorClass:(Class)directorClass
-                            direction:(MDMTimeWindowDirection)direction
+                            direction:(MDMTransitionDirection)direction
                    backViewController:(UIViewController *)backViewController
                    foreViewController:(UIViewController *)foreViewController {
   self = [super init];
   if (self) {
+    _direction = direction;
     _director = [[directorClass alloc] initWithTransition:self];
 
     NSTimeInterval transitionDuration = MDMTransitionDirectorTransitionDurationDefault;
@@ -101,7 +102,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 
   // Ensure that the destination view controller is part of the view hierarchy.
   UIView *containerView = [self.transitionContext containerView];
-  if (self.window.initialDirection == MDMTimeWindowDirectionForward) {
+  if (self.direction == MDMTransitionDirectionForward) {
     [containerView addSubview:toViewController.view];
   } else {
     [containerView insertSubview:toViewController.view atIndex:0];

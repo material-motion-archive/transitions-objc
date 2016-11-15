@@ -49,7 +49,7 @@
   [self prepareForTransitionWithSourceViewController:source
                                   backViewController:presenting
                                   foreViewController:presented
-                                           direction:MDMTimeWindowDirectionForward];
+                                           direction:MDMTransitionDirectionForward];
   return self.activeTransition;
 }
 
@@ -69,7 +69,7 @@
   [self prepareForTransitionWithSourceViewController:sourceViewController
                                   backViewController:dismissed.presentingViewController
                                   foreViewController:dismissed
-                                           direction:MDMTimeWindowDirectionBackward];
+                                           direction:MDMTransitionDirectionBackward];
   return self.activeTransition;
 }
 
@@ -84,9 +84,9 @@
 - (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
                                   backViewController:(UIViewController *)backViewController
                                   foreViewController:(UIViewController *)foreViewController
-                                           direction:(MDMTimeWindowDirection)direction {
+                                           direction:(MDMTransitionDirection)direction {
   // Dismissing while we're in another transition is fine.
-  if (direction == MDMTimeWindowDirectionBackward) {
+  if (direction == MDMTransitionDirectionBackward) {
     self.activeTransition = nil;
   }
   NSAssert(!self.activeTransition, @"Transition already active!");

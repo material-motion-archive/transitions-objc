@@ -18,6 +18,15 @@
 
 @class MDMTimeWindow;
 
+/** The possible directions of a transition. */
+typedef NS_ENUM(NSUInteger, MDMTransitionDirection) {
+  /** The fore view controller is being presented. */
+  MDMTransitionDirectionForward,
+
+  /** The fore view controller is being dismissed. */
+  MDMTransitionDirectionBackward,
+} NS_SWIFT_NAME(TransitionDirection);
+
 /** A Transition object represents the essential state for a UIViewController transition. */
 NS_SWIFT_NAME(Transition)
 @interface MDMTransition : NSObject
@@ -31,6 +40,9 @@ NS_SWIFT_NAME(Transition)
 @property(nonatomic, strong, nonnull, readonly) NSObject<MDMRuntimeFeatures> *runtime;
 
 #pragma mark Time window
+
+/** The time window for this transition. */
+@property(nonatomic, assign, readonly) MDMTransitionDirection direction;
 
 /** The time window for this transition. */
 @property(nonatomic, strong, nonnull, readonly) MDMTimeWindow *window;
