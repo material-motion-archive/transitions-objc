@@ -47,6 +47,9 @@ NS_SWIFT_NAME(Transition)
 /** The time window for this transition. */
 @property(nonatomic, strong, nonnull, readonly) MDMTimeWindow *window;
 
+/** The timeline for this transition. */
+@property(nonatomic, strong, nonnull, readonly) MDMTimeline *timeline;
+
 #pragma mark Transition sides
 
 /** The container view for the transition as reported by UIKit's transition context. */

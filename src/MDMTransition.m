@@ -50,6 +50,8 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
     _window = [[MDMTimeWindow alloc] initWithInitialDirection:direction duration:transitionDuration];
 #pragma clang diagnostic pop
 
+    _timeline = [MDMTimeline new];
+
     _backViewController = backViewController;
     _foreViewController = foreViewController;
 
