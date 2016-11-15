@@ -14,13 +14,16 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
 #import "MDMTransitionWindow.h"
-#import "MDMTransitionWindowSegment.h"
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+@implementation MDMTransitionWindow
+
+- (instancetype)initWithDuration:(NSTimeInterval)duration {
+  self = [super init];
+  if (self) {
+    _duration = duration;
+  }
+  return self;
+}
+
+@end

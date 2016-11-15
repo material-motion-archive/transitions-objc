@@ -14,13 +14,20 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
-#import "MDMTransitionWindow.h"
-#import "MDMTransitionWindowSegment.h"
-
 #import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+
+/** A transition window represents a reversible interval of time in a bi-directional transition. */
+NS_SWIFT_NAME(TransitionWindow)
+@interface MDMTransitionWindow : NSObject
+
+/** Initializes a newly-allocated transition window with a duration. */
+- (nonnull instancetype)initWithDuration:(NSTimeInterval)duration
+    NS_DESIGNATED_INITIALIZER;
+
+/** Unavailable. */
+- (nonnull instancetype)init NS_UNAVAILABLE;
+
+/** The transition window's duration in time. */
+@property(nonatomic, assign, readonly) NSTimeInterval duration;
+
+@end
