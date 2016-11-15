@@ -23,14 +23,12 @@ const MDMTransitionDirection MDMTimeWindowDirectionBackward = MDMTransitionDirec
 
 - (instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection
                                 duration:(NSTimeInterval)duration {
-  self = [super init];
+  self = [super initWithDuration:duration];
   if (self) {
     _initialDirection = initialDirection;
-    _duration = duration;
-
     _currentDirection = initialDirection;
 
-    if (_initialDirection == MDMTransitionDirectionBackward) {
+    if (_currentDirection == MDMTransitionDirectionBackward) {
       _position = 1;
     }
   }

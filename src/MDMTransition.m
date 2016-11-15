@@ -45,8 +45,11 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
       transitionDuration = [directorClass transitionDuration];
     }
 
-    _window = [[MDMTimeWindow alloc] initWithInitialDirection:direction
-                                                     duration:transitionDuration];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    _window = [[MDMTimeWindow alloc] initWithInitialDirection:direction duration:transitionDuration];
+#pragma clang diagnostic pop
+
     _backViewController = backViewController;
     _foreViewController = foreViewController;
 
@@ -121,7 +124,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 }
 
 - (void)runtimeDidIdle {
-  BOOL completedInOriginalDirection = self.window.currentDirection == self.window.initialDirection;
+  BOOL completedInOriginalDirection = true;
   // UIKit container view controllers will replay their transition animation if the transition
   // percentage is exactly 0 or 1, so we fake being super close to these values in order to avoid
   // this flickering animation.
