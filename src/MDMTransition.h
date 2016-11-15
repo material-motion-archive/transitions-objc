@@ -49,6 +49,9 @@ NS_SWIFT_NAME(Transition)
 
 #pragma mark Transition sides
 
+/** The container view for the transition as reported by UIKit's transition context. */
+@property(nonatomic, strong, nonnull, readonly) UIView *containerView;
+
 /**
  The back view controller for this transition.
 

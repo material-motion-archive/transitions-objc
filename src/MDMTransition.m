@@ -145,4 +145,8 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
   [self.delegate transitionDidComplete:self];
 }
 
+- (UIView *)containerView {
+  return [self.transitionContext containerView];
+}
+
 @end
