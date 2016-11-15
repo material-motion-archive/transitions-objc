@@ -19,7 +19,7 @@
 
 #import "MDMTransitionDirector.h"
 
-const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
+const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 
 @interface MDMTransition () <MDMRuntimeDelegate>
 
