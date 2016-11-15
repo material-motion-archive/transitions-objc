@@ -22,5 +22,6 @@
 #import "MDMTransitionDirector.h"
 #import "MDMTransitionWindow.h"
 #import "MDMTransitionWindowSegment.h"
+#import "MDMViewReplicator.h"
 
 #import <MaterialMotionRuntime/MaterialMotionRuntime.h>
