@@ -50,6 +50,11 @@ NS_SWIFT_NAME(Transition)
 /** The timeline for this transition. */
 @property(nonatomic, strong, nonnull, readonly) MDMTimeline *timeline;
 
+#pragma mark Context view
+
+/** The context view for this transition. */
+@property(nonatomic, strong, nullable, readonly) UIView *contextView;
+
 #pragma mark Transition sides
 
 /** The container view for the transition as reported by UIKit's transition context. */

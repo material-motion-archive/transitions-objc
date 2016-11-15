@@ -21,6 +21,7 @@
 @protocol MDMTransitionDelegate <NSObject>
 
 - (void)transitionDidComplete:(nonnull MDMTransition *)transition;
+- (nonnull UIView *)contextViewForTransition:(nonnull MDMTransition *)transition;
 
 @end
 
