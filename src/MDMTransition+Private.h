@@ -21,13 +21,14 @@
 @protocol MDMTransitionDelegate <NSObject>
 
 - (void)transitionDidComplete:(nonnull MDMTransition *)transition;
+- (nonnull UIView *)contextViewForTransition:(nonnull MDMTransition *)transition;
 
 @end
 
 @interface MDMTransition () <UIViewControllerAnimatedTransitioning>
 
 - (nonnull instancetype)initWithDirectorClass:(nonnull Class)directorClass
-                                    direction:(MDMTimeWindowDirection)direction
+                                    direction:(MDMTransitionDirection)direction
                            backViewController:(nonnull UIViewController *)backViewController
                            foreViewController:(nonnull UIViewController *)foreViewController
     NS_DESIGNATED_INITIALIZER

@@ -1,6 +1,6 @@
 abstract_target 'MaterialMotionTransitions' do
-  pod 'MaterialMotionRuntime', "~> 5.0"
-  pod 'MaterialMotionCoreAnimationFamily'
+  pod 'MaterialMotionRuntime', "~> 6.0"
+  pod 'MaterialMotionCoreAnimation', "~> 2.0"
   pod 'CatalogByConvention'
 
   pod 'MaterialMotionTransitions', :path => './'

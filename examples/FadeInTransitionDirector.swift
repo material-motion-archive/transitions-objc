@@ -16,7 +16,7 @@
 
 import UIKit
 import MaterialMotionTransitions
-import MaterialMotionCoreAnimationFamily
+import MaterialMotionCoreAnimation
 
 class FadeInTransitionDirector: NSObject, TransitionDirector {
 
@@ -27,7 +27,7 @@ class FadeInTransitionDirector: NSObject, TransitionDirector {
 
   func setUp() {
     let animation = Tween("opacity", duration: transition.window.duration)
-    if transition.window.initialDirection == .forward {
+    if transition.direction == .forward {
       animation.from = NSNumber(value: 0)
       animation.to = NSNumber(value: 1)
     } else {

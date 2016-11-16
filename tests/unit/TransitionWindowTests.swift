@@ -14,15 +14,13 @@
  limitations under the License.
  */
 
-#import "MDMContextViewRetriever.h"
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
-#import "MDMTransitionWindow.h"
-#import "MDMTransitionWindowSegment.h"
-#import "MDMViewReplicator.h"
+import XCTest
+import MaterialMotionTransitions
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+class TransitionWindowTests: XCTestCase {
+
+  func testCreation() {
+    let window = TransitionWindow(duration: 0.3)
+    XCTAssertEqual(window.duration, 0.3)
+  }
+}

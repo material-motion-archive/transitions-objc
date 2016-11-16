@@ -16,6 +16,7 @@
 
 #import "MDMTransitionController.h"
 
+#import "MDMContextViewRetriever+Private.h"
 #import "MDMTransition+Private.h"
 #import "MDMTransitionDirector.h"
 
@@ -26,6 +27,7 @@
 - (instancetype)initWithViewController:(UIViewController *)viewController;
 
 @property(nonatomic, weak) UIViewController *associatedViewController;
+@property(nonatomic, weak) id<MDMContextViewRetriever> contextViewRetriever;
 
 @property(nonatomic, strong) MDMTransition *activeTransition;
 
@@ -49,7 +51,7 @@
   [self prepareForTransitionWithSourceViewController:source
                                   backViewController:presenting
                                   foreViewController:presented
-                                           direction:MDMTimeWindowDirectionForward];
+                                           direction:MDMTransitionDirectionForward];
   return self.activeTransition;
 }
 
@@ -69,7 +71,7 @@
   [self prepareForTransitionWithSourceViewController:sourceViewController
                                   backViewController:dismissed.presentingViewController
                                   foreViewController:dismissed
-                                           direction:MDMTimeWindowDirectionBackward];
+                                           direction:MDMTransitionDirectionBackward];
   return self.activeTransition;
 }
 
@@ -79,14 +81,25 @@
   self.activeTransition = nil;
 }
 
+- (UIView *)contextViewForTransition:(MDMTransition *)transition {
+  if (self.contextViewRetriever == nil) {
+    // MDMContextViewRetrieverForViewController can be a relatively complex lookup if it can't
+    // immediately find the context view retriever. If a director requests a context view it's
+    // pretty likely that there is a context view retriever in the responder chain, so we lazily
+    // wait until the first such request comes in before searching for the retriever.
+    self.contextViewRetriever = MDMContextViewRetrieverForViewController(transition.backViewController);
+  }
+  return [self.contextViewRetriever contextViewForTransitionWithForeViewController:transition.foreViewController];
+}
+
 #pragma mark - Private APIs
 
 - (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
                                   backViewController:(UIViewController *)backViewController
                                   foreViewController:(UIViewController *)foreViewController
-                                           direction:(MDMTimeWindowDirection)direction {
+                                           direction:(MDMTransitionDirection)direction {
   // Dismissing while we're in another transition is fine.
-  if (direction == MDMTimeWindowDirectionBackward) {
+  if (direction == MDMTransitionDirectionBackward) {
     self.activeTransition = nil;
   }
   NSAssert(!self.activeTransition, @"Transition already active!");
@@ -96,6 +109,7 @@
                                                                direction:direction
                                                       backViewController:backViewController
                                                       foreViewController:foreViewController];
+    self.activeTransition.delegate = self;
   }
 }
 

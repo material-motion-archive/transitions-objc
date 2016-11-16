@@ -14,37 +14,39 @@
  limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
+#import "MDMTransition.h"
+#import "MDMTransitionWindow.h"
 
-/** The possible directions of movement for the position in a time window. */
-typedef NS_ENUM(NSUInteger, MDMTimeWindowDirection) {
-  /** Moving towards 1.0. */
-  MDMTimeWindowDirectionForward,
+/** Deprecated. Use MDMTransitionDirection instead. */
+typedef MDMTransitionDirection MDMTimeWindowDirection
+    __deprecated_msg("Use MDMTransitionDirection instead. Deprecated in v1.1.0.");
 
-  /** Moving towards 0.0. */
-  MDMTimeWindowDirectionBackward,
-} NS_SWIFT_NAME(TimeWindowDirection);
+/** Deprecated. Use MDMTransitionDirectionForward instead. */
+extern const MDMTransitionDirection MDMTimeWindowDirectionForward
+    __deprecated_msg("Use MDMTransitionDirectionForward instead. Deprecated in v1.1.0.");
+/** Deprecated. Use MDMTransitionDirectionForward instead. */
+extern const MDMTransitionDirection MDMTimeWindowDirectionBackward
+    __deprecated_msg("Use MDMTransitionDirectionBackward instead. Deprecated in v1.1.0.");
 
 /** A time window provides a normalized view of a period of time. */
 NS_SWIFT_NAME(TimeWindow)
-@interface MDMTimeWindow : NSObject
+@interface MDMTimeWindow : MDMTransitionWindow
 
 /** Initializes a newly-allocated time window with a direction and duration. */
-- (nonnull instancetype)initWithInitialDirection:(MDMTimeWindowDirection)initialDirection
+- (nonnull instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection
                                         duration:(NSTimeInterval)duration
-    NS_DESIGNATED_INITIALIZER;
+    __deprecated_msg("Use MDMTransitionWindow instead.");
 
 /** Unavailable. */
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
 /** The initial direction of the time window position's movement. */
-@property(nonatomic, assign, readonly) MDMTimeWindowDirection initialDirection;
-
-/** The duration described by this time window. */
-@property(nonatomic, assign, readonly) NSTimeInterval duration;
+@property(nonatomic, assign, readonly) MDMTransitionDirection initialDirection
+    __deprecated_msg("Use MDMTransitionWindow instead.");
 
 /** The current direction of the time window position's movement. */
-@property(nonatomic, assign) MDMTimeWindowDirection currentDirection;
+@property(nonatomic, assign) MDMTransitionDirection currentDirection
+    __deprecated_msg("Use MDMTransitionWindow instead.");
 
 /**
  The current position within the time window.
@@ -56,6 +58,7 @@ NS_SWIFT_NAME(TimeWindow)
 
  The initial value depends on the initialDirection.
  */
-@property(nonatomic, assign) CGFloat position;
+@property(nonatomic, assign) CGFloat position
+    __deprecated_msg("Use timeline.position instead.");
 
 @end

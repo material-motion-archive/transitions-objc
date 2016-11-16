@@ -18,12 +18,15 @@
 
 @protocol MDMReplicaControllerDelegate;
 
+// clang-format off
+
 /**
  A replica controller is responsible for facilitating the creation of visible replicas of
  displayable elements.
 
  An element might be a UIView or any other displayable object.
  */
+__deprecated_msg("Use ViewReplicator instead. Deprecated in v1.1.0.")
 NS_SWIFT_NAME(ReplicaController)
 @interface MDMReplicaController : NSObject
 
@@ -37,7 +40,8 @@ NS_SWIFT_NAME(ReplicaController)
  The returned element can not be the provided element.
  */
 - (nullable id)replicateElement:(nonnull id)element
-    NS_SWIFT_NAME(replicate(element:));
+    NS_SWIFT_NAME(replicate(element:))
+    __deprecated_msg("Use ViewReplicator instead. Deprecated in v1.1.0.");
 
 #pragma mark Configuration replication
 
@@ -46,15 +50,18 @@ NS_SWIFT_NAME(ReplicaController)
 
  If no delegate is provided, no replicas will be created.
  */
-@property(nonatomic, weak, nullable) id<MDMReplicaControllerDelegate> delegate;
+@property(nonatomic, weak, nullable) id<MDMReplicaControllerDelegate> delegate
+    __deprecated_msg("Use ViewReplicator instead. Deprecated in v1.1.0.");
 
 /** Disable replication for a specific element. */
 - (void)disableReplicationForElement:(nonnull id)element
-    NS_SWIFT_NAME(disableReplication(forElement:));
+    NS_SWIFT_NAME(disableReplication(forElement:))
+    __deprecated_msg("Use ViewReplicator instead. Deprecated in v1.1.0.");
 
 @end
 
 /** The replica controller delegate is responsible for creating replica elements. */
+__deprecated_msg("Use ViewReplicator instead. Deprecated in v1.1.0.")
 NS_SWIFT_NAME(ReplicaControllerDelegate)
 @protocol MDMReplicaControllerDelegate <NSObject>
 
@@ -64,6 +71,9 @@ NS_SWIFT_NAME(ReplicaControllerDelegate)
  Return `element` if replication of the element is not possible or desired.
  */
 - (nonnull id)replicateElement:(nonnull id)element
-    NS_SWIFT_NAME(replicate(element:));
+    NS_SWIFT_NAME(replicate(element:))
+    __deprecated_msg("Use ViewReplicator instead. Deprecated in v1.1.0.");
 
 @end
+
+    // clang-format on

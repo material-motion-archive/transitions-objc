@@ -16,18 +16,19 @@
 
 #import "MDMTimeWindow.h"
 
+const MDMTransitionDirection MDMTimeWindowDirectionForward = MDMTransitionDirectionForward;
+const MDMTransitionDirection MDMTimeWindowDirectionBackward = MDMTransitionDirectionBackward;
+
 @implementation MDMTimeWindow
 
-- (instancetype)initWithInitialDirection:(MDMTimeWindowDirection)initialDirection
+- (instancetype)initWithInitialDirection:(MDMTransitionDirection)initialDirection
                                 duration:(NSTimeInterval)duration {
-  self = [super init];
+  self = [super initWithDuration:duration];
   if (self) {
     _initialDirection = initialDirection;
-    _duration = duration;
-
     _currentDirection = initialDirection;
 
-    if (_initialDirection == MDMTimeWindowDirectionBackward) {
+    if (_currentDirection == MDMTransitionDirectionBackward) {
       _position = 1;
     }
   }

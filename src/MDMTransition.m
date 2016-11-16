@@ -19,7 +19,7 @@
 
 #import "MDMTransitionDirector.h"
 
-const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
+const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 
 @interface MDMTransition () <MDMRuntimeDelegate>
 
@@ -32,11 +32,12 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
 @implementation MDMTransition
 
 - (instancetype)initWithDirectorClass:(Class)directorClass
-                            direction:(MDMTimeWindowDirection)direction
+                            direction:(MDMTransitionDirection)direction
                    backViewController:(UIViewController *)backViewController
                    foreViewController:(UIViewController *)foreViewController {
   self = [super init];
   if (self) {
+    _direction = direction;
     _director = [[directorClass alloc] initWithTransition:self];
 
     NSTimeInterval transitionDuration = MDMTransitionDirectorTransitionDurationDefault;
@@ -44,8 +45,13 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
       transitionDuration = [directorClass transitionDuration];
     }
 
-    _window = [[MDMTimeWindow alloc] initWithInitialDirection:direction
-                                                     duration:transitionDuration];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    _window = [[MDMTimeWindow alloc] initWithInitialDirection:direction duration:transitionDuration];
+#pragma clang diagnostic pop
+
+    _timeline = [MDMTimeline new];
+
     _backViewController = backViewController;
     _foreViewController = foreViewController;
 
@@ -101,7 +107,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
 
   // Ensure that the destination view controller is part of the view hierarchy.
   UIView *containerView = [self.transitionContext containerView];
-  if (self.window.initialDirection == MDMTimeWindowDirectionForward) {
+  if (self.direction == MDMTransitionDirectionForward) {
     [containerView addSubview:toViewController.view];
   } else {
     [containerView insertSubview:toViewController.view atIndex:0];
@@ -120,7 +126,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
 }
 
 - (void)runtimeDidIdle {
-  BOOL completedInOriginalDirection = self.window.currentDirection == self.window.initialDirection;
+  BOOL completedInOriginalDirection = true;
   // UIKit container view controllers will replay their transition animation if the transition
   // percentage is exactly 0 or 1, so we fake being super close to these values in order to avoid
   // this flickering animation.
@@ -142,6 +148,14 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.3;
   self.director = nil;
 
   [self.delegate transitionDidComplete:self];
+}
+
+- (UIView *)contextView {
+  return [self.delegate contextViewForTransition:self];
+}
+
+- (UIView *)containerView {
+  return [self.transitionContext containerView];
 }
 
 @end

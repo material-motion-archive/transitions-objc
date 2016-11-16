@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "MaterialMotionTransitions"
   s.summary      = "Material Motion Transitions for Apple Devices"
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.authors      = "The Material Motion Authors"
   s.license      = "Apache 2.0"
   s.homepage     = "https://github.com/material-motion/material-motion-transitions-objc"
@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.source_files = "src/*.{h,m,mm}", "src/private/*.{h,m,mm}"
   s.header_mappings_dir = "src"
 
-  s.dependency "MaterialMotionRuntime", "~> 5.0"
+  s.dependency "MaterialMotionRuntime", "~> 6.0"
 end
