@@ -1,6 +1,81 @@
-# release-candidate
+# 1.1.0
 
- TODO: Enumerate changes.
+This is a small feature release that introduces some additional APIs for building transitions.
+
+## New deprecations
+
+- MDMReplicaController has been deprecated. Use MDMViewReplicator instead.
+- MDMTimeWindow has been deprecated. Use MDMTransitionWindow instead.
+
+## New features
+
+- Context view retrieval for transition directors.
+- MDMViewReplicator makes it easy to replicate views for use in transitions.
+- MDMTransition has a variety of new APIs for building transition-specific plans.
+- MDMTransitionWindow replaces MDMTimeWindow and provides a normalized bi-directional mechanism for
+  associating time-based animations with a transition.
+
+## Source changes
+
+* [Resolve build failures due to dependency changes.](https://github.com/material-motion/transitions-objc/commit/af66c4a3c796c637ddf7f56a631a056986519971) (Jeff Verkoeyen)
+* [Expose contextView API in Transition.](https://github.com/material-motion/transitions-objc/commit/1c24013e9e8fa7160ce31a502de571e0658501b5) (Jeff Verkoeyen)
+* [Add a timeline property to the Transition.](https://github.com/material-motion/transitions-objc/commit/124a1d146ff2858c90614fe67a1ddc628736e0ac) (Jeff Verkoeyen)
+* [Deprecate ReplicaController.](https://github.com/material-motion/transitions-objc/commit/a8c94f8aa9aa922d1f1571bb453811824e989605) (Jeff Verkoeyen)
+* [Add context view retriever type.](https://github.com/material-motion/transitions-objc/commit/10d37a6ece4641656cf92e1cbcc7608873cce14b) (Jeff Verkoeyen)
+* [Add ViewReplicator class.](https://github.com/material-motion/transitions-objc/commit/7055b09e544317ee9e492929dfb6d196cad3d5c3) (Jeff Verkoeyen)
+* [Deprecate TimeWindow.](https://github.com/material-motion/transitions-objc/commit/7d033bd02b4fcd4acdcaa4d43a103a5920477686) (Jeff Verkoeyen)
+* [Add containerView API.](https://github.com/material-motion/transitions-objc/commit/1d784faf448ea63211bebdd89e262d0a998723a1) (Jeff Verkoeyen)
+* [Introduce TransitionDirection enumeration.](https://github.com/material-motion/transitions-objc/commit/fb3d82b5139c3aaf4677b289b9fdf26f46424e94) (Jeff Verkoeyen)
+* [Change default transition duration to match the iOS default of 0.35s.](https://github.com/material-motion/transitions-objc/commit/2848c359fbd7c36a50ee6032d9754c8be866adbc) (Jeff Verkoeyen)
+* [Add TransitionWindow APIs.](https://github.com/material-motion/transitions-objc/commit/efed3fe28b6a61d813b2f77b00e638b8af83ad08) (Jeff Verkoeyen)
+* [Set the transition delegate so that we properly clean up transition state.](https://github.com/material-motion/transitions-objc/commit/fdd0ea417febacba1cd5efb29f2c5b9a193b4ca7) (Jeff Verkoeyen)
+
+## API changes
+
+## MDMContextViewRetriever
+
+*new* protocol: `MDMContextViewRetriever`
+
+*new* method: `-contextViewForTransitionWithForeViewController:` in `MDMContextViewRetriever`
+
+## MDMReplicaController
+
+*deprecated* class: `MDMReplicaController`
+
+## MDMTimeWindow
+
+*deprecated* class: `MDMTimeWindow`
+
+## MDMTransition
+
+*new* enum: `MDMTransitionDirection`
+
+*new* property: `direction`
+
+*new* property: `timeline`
+
+*new* property: `contextView`
+
+*new* property: `containerView`
+
+## MDMTransitionWindow
+
+*new* class: `MDMTransitionWindow`
+
+## MDMTransitionWindowSegment
+
+*new* struct: `MDMTransitionWindowSegment`
+
+## MDMViewReplicator
+
+*new* struct: `MDMViewReplicator`
+
+## Non-source changes
+
+* [Automatic changelog preparation for release.](https://github.com/material-motion/transitions-objc/commit/165b259e0f28a549f3486b1e1848eab1c7b3c738) (Jeff Verkoeyen)
+* [Bump dependent version numbers.](https://github.com/material-motion/transitions-objc/commit/749733fb9628ec33598b313c411b3967bb6a4640) (Jeff Verkoeyen)
+* [Add callsign to repo.](https://github.com/material-motion/transitions-objc/commit/86470055f86c52236050af0af4e8e91ad4de6f52) (Jeff Verkoeyen)
+
 # 1.0.0
 
 Initial release.
