@@ -8,7 +8,7 @@ PODS:
 
 DEPENDENCIES:
   - CatalogByConvention
-  - MaterialMotionCoreAnimation
+  - MaterialMotionCoreAnimation (~> 2.0)
   - MaterialMotionRuntime
   - MaterialMotionTransitions (from `./`)
 
@@ -22,6 +22,6 @@ SPEC CHECKSUMS:
   MaterialMotionRuntime: 89cb395df1ce02134fc67a16b42dc4492b6c514c
   MaterialMotionTransitions: 18647b8c74fb4699908820a10ff05a2179c6d6e5
 
-PODFILE CHECKSUM: be9694498ab4f4e479041d74ca92be5e104d0aaf
+PODFILE CHECKSUM: 95987b6806d72981168a87daa68f61369527d8f9
 
 COCOAPODS: 1.1.1

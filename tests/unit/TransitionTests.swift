@@ -15,7 +15,7 @@
  */
 
 import XCTest
-import MaterialMotionCoreAnimationFamily
+import MaterialMotionCoreAnimation
 import MaterialMotionTransitions
 
 private class ChangeState: NSObject, Plan {

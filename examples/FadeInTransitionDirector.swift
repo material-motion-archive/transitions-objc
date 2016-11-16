@@ -16,7 +16,7 @@
 
 import UIKit
 import MaterialMotionTransitions
-import MaterialMotionCoreAnimationFamily
+import MaterialMotionCoreAnimation
 
 class FadeInTransitionDirector: NSObject, TransitionDirector {
 
