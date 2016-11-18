@@ -16,7 +16,7 @@
 
 #import "MDMTransitionWindowSegment.h"
 
-const CGFloat MDMTransitionWindowSegmentEpsilon = 0.00001;
+const CGFloat MDMTransitionWindowSegmentEpsilon = (CGFloat)0.00001;
 
 struct MDMTransitionWindowSegment MDMTransitionWindowSegmentInverted(struct MDMTransitionWindowSegment segment) {
   return (struct MDMTransitionWindowSegment){

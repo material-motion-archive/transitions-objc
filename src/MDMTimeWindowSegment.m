@@ -16,4 +16,4 @@
 
 #import "MDMTimeWindowSegment.h"
 
-const CGFloat MDMTimeWindowSegmentEpsilon = 0.00001;
+const CGFloat MDMTimeWindowSegmentEpsilon = (CGFloat)0.00001;
