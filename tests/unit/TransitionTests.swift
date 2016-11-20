@@ -22,11 +22,11 @@ class TransitionTests: XCTestCase {
 
   func testInitialization() {
     let transition = Transition(directorClass: EmptyDirector.self,
-                                timeWindow: .forward,
+                                direction: .forward,
                                 back: .init(),
                                 fore: .init())
     XCTAssertNotNil(transition.backViewController)
     XCTAssertNotNil(transition.foreViewController)
-    XCTAssertEqual(transition.window.currentDirection, .forward)
+    XCTAssertEqual(transition.direction, .forward)
   }
 }
