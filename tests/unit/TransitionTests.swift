@@ -18,31 +18,6 @@ import XCTest
 import MaterialMotionCoreAnimation
 import MaterialMotionTransitions
 
-private class ChangeState: NSObject, Plan {
-  func performerClass() -> AnyClass {
-    return Performer.self
-  }
-
-  func copy(with zone: NSZone? = nil) -> Any {
-    return ChangeState()
-  }
-
-  private class Performer: NSObject, Performing {
-    let target: State
-    required init(target: Any) {
-      self.target = target as! State
-    }
-
-    func addPlan(_ plan: Plan) {
-      target.boolean = true
-    }
-  }
-}
-
-private class State {
-  var boolean = false
-}
-
 class TransitionTests: XCTestCase {
 
   func testInitialization() {
