@@ -18,6 +18,10 @@ import XCTest
 import UIKit
 import MaterialMotionTransitions
 
+class TestViewControllerTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+
+}
+
 class TransitionControllerTests: XCTestCase {
 
   func testTransitioningDelegateAssignment() {
@@ -25,5 +29,16 @@ class TransitionControllerTests: XCTestCase {
     let transitionController = viewController.mdm_transitionController
 
     XCTAssertTrue(viewController.transitioningDelegate! === transitionController)
+  }
+
+  func testExistingTransitioningDelegateIsMaintained() {
+    let viewController = UIViewController()
+
+    let delegate = TestViewControllerTransitioningDelegate()
+    viewController.transitioningDelegate = delegate
+
+    let _ = viewController.mdm_transitionController
+
+    XCTAssertTrue(viewController.transitioningDelegate! === delegate)
   }
 }
