@@ -16,8 +16,8 @@
 
 #import "MDMTransitionController.h"
 
-#import "MDMContextViewRetriever+Private.h"
 #import "MDMTransition+Private.h"
+#import "MDMTransitionContextViewRetriever+Private.h"
 #import "MDMTransitionDirector.h"
 
 #import <objc/runtime.h>
@@ -27,7 +27,7 @@
 - (instancetype)initWithViewController:(UIViewController *)viewController;
 
 @property(nonatomic, weak) UIViewController *associatedViewController;
-@property(nonatomic, weak) id<MDMContextViewRetriever> contextViewRetriever;
+@property(nonatomic, weak) id<MDMTransitionContextViewRetriever> TransitionContextViewRetriever;
 
 @property(nonatomic, strong) MDMTransition *activeTransition;
 
@@ -82,14 +82,14 @@
 }
 
 - (UIView *)contextViewForTransition:(MDMTransition *)transition {
-  if (self.contextViewRetriever == nil) {
-    // MDMContextViewRetrieverForViewController can be a relatively complex lookup if it can't
+  if (self.TransitionContextViewRetriever == nil) {
+    // MDMTransitionContextViewRetrieverForViewController can be a relatively complex lookup if it can't
     // immediately find the context view retriever. If a director requests a context view it's
     // pretty likely that there is a context view retriever in the responder chain, so we lazily
     // wait until the first such request comes in before searching for the retriever.
-    self.contextViewRetriever = MDMContextViewRetrieverForViewController(transition.backViewController);
+    self.TransitionContextViewRetriever = MDMTransitionContextViewRetrieverForViewController(transition.backViewController);
   }
-  return [self.contextViewRetriever contextViewForTransitionWithForeViewController:transition.foreViewController];
+  return [self.TransitionContextViewRetriever contextViewForTransitionWithForeViewController:transition.foreViewController];
 }
 
 #pragma mark - Private APIs

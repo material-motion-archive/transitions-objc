@@ -14,19 +14,19 @@
  limitations under the License.
  */
 
-#import "MDMContextViewRetriever.h"
-#import "MDMContextViewRetriever+Private.h"
+#import "MDMTransitionContextViewRetriever.h"
+#import "MDMTransitionContextViewRetriever+Private.h"
 
-id<MDMContextViewRetriever> MDMContextViewRetrieverForViewController(UIViewController *viewController) {
+id<MDMTransitionContextViewRetriever> MDMTransitionContextViewRetrieverForViewController(UIViewController *viewController) {
   const SEL retrievalSelector = @selector(contextViewForTransitionWithForeViewController:);
 
   // Get the view retriever by walking up the source view controller hierarchy until we find one
-  // that conforms to ODEContextViewRetriever.
+  // that conforms to ODETransitionContextViewRetriever.
   for (UIViewController *iterator = viewController;
        iterator;
        iterator = viewController.parentViewController) {
     if ([viewController respondsToSelector:retrievalSelector]) {
-      return (id<MDMContextViewRetriever>)iterator;
+      return (id<MDMTransitionContextViewRetriever>)iterator;
     }
   }
 
@@ -37,7 +37,7 @@ id<MDMContextViewRetriever> MDMContextViewRetrieverForViewController(UIViewContr
   while (queue.count > 0) {
     UIViewController *childViewController = [queue firstObject];
     if ([childViewController respondsToSelector:retrievalSelector]) {
-      return (id<MDMContextViewRetriever>)childViewController;
+      return (id<MDMTransitionContextViewRetriever>)childViewController;
     }
     [queue removeObjectAtIndex:0];
 

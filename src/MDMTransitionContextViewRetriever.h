@@ -27,8 +27,8 @@
  query the fore view controller for its currently-visible photo and return the relevant photo's
  view.
  */
-NS_SWIFT_NAME(ContextViewRetriever)
-@protocol MDMContextViewRetriever <NSObject>
+NS_SWIFT_NAME(TransitionContextViewRetriever)
+@protocol MDMTransitionContextViewRetriever <NSObject>
 
 /**
  Asks the receiver to return an existing view that contextually represents the provided fore view
@@ -41,3 +41,13 @@ NS_SWIFT_NAME(ContextViewRetriever)
 - (nullable UIView *)contextViewForTransitionWithForeViewController:(nonnull UIViewController *)foreViewController;
 
 @end
+
+// clang-format off
+
+NS_SWIFT_NAME(ContextViewRetriever)
+__deprecated_msg("Use TransitionContextViewRetriever instead. Deprecated in #nextrelease#.")
+/** Deprecated. */
+@protocol MDMContextViewRetriever <MDMTransitionContextViewRetriever>
+@end
+
+    // clang-format on

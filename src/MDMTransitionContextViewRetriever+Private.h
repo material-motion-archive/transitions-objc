@@ -14,6 +14,6 @@
  limitations under the License.
  */
 
-#import "MDMContextViewRetriever.h"
+#import "MDMTransitionContextViewRetriever.h"
 
-FOUNDATION_EXPORT id<MDMContextViewRetriever> _Nonnull MDMContextViewRetrieverForViewController(UIViewController* _Nonnull viewController);
+FOUNDATION_EXPORT id<MDMTransitionContextViewRetriever> _Nonnull MDMTransitionContextViewRetrieverForViewController(UIViewController* _Nonnull viewController);
