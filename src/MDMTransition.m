@@ -80,6 +80,14 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
   self.transitionContext = nil;
 }
 
+#pragma mark - UIViewControllerInteractiveTransitioning
+
+- (void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+  self.transitionContext = transitionContext;
+
+  [self initiateTransition];
+}
+
 #pragma mark - MDMSchedulerDelegate
 
 - (void)runtimeActivityStateDidChange:(MDMRuntime *)runtime {

@@ -78,6 +78,20 @@
   return self.activeTransition;
 }
 
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
+  if (animator == self.activeTransition && [self isInteractive]) {
+    return self.activeTransition;
+  }
+  return nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+  if (animator == self.activeTransition && [self isInteractive]) {
+    return self.activeTransition;
+  }
+  return nil;
+}
+
 #pragma mark - MDMTransitionDelegate
 
 - (void)transitionDidComplete:(MDMTransition *)transition {
@@ -96,6 +110,15 @@
 }
 
 #pragma mark - Private
+
+- (BOOL)isInteractive {
+  for (UIGestureRecognizer *gestureRecognizer in self.dismisser.knownGestureRecognizers) {
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan || gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+      return true;
+    }
+  }
+  return false;
+}
 
 - (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
                                   backViewController:(UIViewController *)backViewController

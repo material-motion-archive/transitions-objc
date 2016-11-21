@@ -25,7 +25,7 @@
 
 @end
 
-@interface MDMTransition () <UIViewControllerAnimatedTransitioning>
+@interface MDMTransition () <UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning>
 
 - (nonnull instancetype)initWithDirectorClass:(nonnull Class)directorClass
                                     direction:(MDMTransitionDirection)direction
