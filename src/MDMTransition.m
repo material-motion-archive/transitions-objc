@@ -18,6 +18,7 @@
 #import "MDMTransition+Private.h"
 
 #import "MDMTransitionDirector.h"
+#import "MDMTransitionDismisser+Private.h"
 
 const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 
@@ -127,6 +128,12 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
   self.foreViewController.view.userInteractionEnabled = NO;
 
   [self.director setUp];
+
+  if ([self.director respondsToSelector:@selector(addGestureRecognizer:)]) {
+    for (UIGestureRecognizer *gestureRecognizer in self.dismisser.knownGestureRecognizers) {
+      [(id<MDMInteractiveTransitionDirector>)self.director addGestureRecognizer:gestureRecognizer];
+    }
+  }
 
   if (self.runtime.activityState == MDMRuntimeActivityStateIdle) {
     [self runtimeDidIdle];

@@ -18,6 +18,8 @@
 
 #import "MDMTimeWindow.h"
 
+@class MDMTransitionDismisser;
+
 @protocol MDMTransitionDelegate <NSObject>
 
 - (void)transitionDidComplete:(nonnull MDMTransition *)transition;
@@ -34,6 +36,7 @@
     NS_DESIGNATED_INITIALIZER
     NS_SWIFT_NAME(init(directorClass:direction:back:fore:));
 
+@property(nonatomic, weak, nullable) MDMTransitionDismisser *dismisser;
 @property(nonatomic, weak, nullable) id<MDMTransitionDelegate> delegate;
 
 @end

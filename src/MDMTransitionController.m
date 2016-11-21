@@ -140,6 +140,9 @@
                                                       backViewController:backViewController
                                                       foreViewController:foreViewController];
     self.activeTransition.delegate = self;
+    if (direction == MDMTransitionDirectionBackward) {
+      self.activeTransition.dismisser = self.dismisser;
+    }
   }
 }
 

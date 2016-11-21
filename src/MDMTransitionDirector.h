@@ -75,8 +75,27 @@ NS_SWIFT_NAME(SelfDismissingTransitionDirector)
  Invoked when a view controller is presented with this director class.
 
  Use the provided dismisser to associate any gesture recognizers that should initiate a dismissal.
+
+ Each gesture recognizer associated with the dismisser will be provided to the director if it
+ conforms to the InteractiveTransitionDirector protocol.
  */
 + (void)willPresentForeViewController:(nonnull UIViewController *)foreViewController
                             dismisser:(nonnull MDMTransitionDismisser *)dismisser;
+
+@end
+
+/**
+ An interactive transition director receives pre-registered gesture recognizers that can affect the
+ state of the transition.
+ */
+NS_SWIFT_NAME(InteractiveTransitionDirector)
+@protocol MDMInteractiveTransitionDirector <MDMTransitionDirector>
+
+/**
+ Invoked once for each gesture recognizer that has been provided to the transition.
+
+ Invoked after setUp.
+ */
+- (void)addGestureRecognizer:(nonnull UIGestureRecognizer *)gestureRecognizer;
 
 @end
