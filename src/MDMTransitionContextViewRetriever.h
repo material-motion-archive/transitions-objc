@@ -45,7 +45,7 @@ NS_SWIFT_NAME(TransitionContextViewRetriever)
 // clang-format off
 
 NS_SWIFT_NAME(ContextViewRetriever)
-__deprecated_msg("Use TransitionContextViewRetriever instead. Deprecated in #nextrelease#.")
+__deprecated_msg("Use TransitionContextViewRetriever instead. Deprecated in #develop#.")
 /** Deprecated. */
 @protocol MDMContextViewRetriever <MDMTransitionContextViewRetriever>
 @end
