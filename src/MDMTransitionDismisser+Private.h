@@ -14,16 +14,15 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionContextViewRetriever.h"
-#import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
 #import "MDMTransitionDismisser.h"
-#import "MDMTransitionWindow.h"
-#import "MDMTransitionWindowSegment.h"
-#import "MDMViewReplicator.h"
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+@class MDMTransitionController;
+
+@interface MDMTransitionDismisser ()
+
+- (nonnull instancetype)initWithTransitionController:(nonnull MDMTransitionController *)controller;
+
+@property(nonatomic, weak, nullable, readonly) MDMTransitionController *controller;
+@property(nonatomic, strong, nonnull, readonly) NSMutableSet *knownGestureRecognizers;
+
+@end

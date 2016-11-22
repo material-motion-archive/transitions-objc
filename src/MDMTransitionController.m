@@ -15,10 +15,12 @@
  */
 
 #import "MDMTransitionController.h"
+#import "MDMTransitionController+Private.h"
 
 #import "MDMTransition+Private.h"
 #import "MDMTransitionContextViewRetriever+Private.h"
 #import "MDMTransitionDirector.h"
+#import "MDMTransitionDismisser+Private.h"
 
 #import <objc/runtime.h>
 
@@ -39,6 +41,7 @@
   self = [super init];
   if (self) {
     _associatedViewController = viewController;
+    _dismisser = [[MDMTransitionDismisser alloc] initWithTransitionController:self];
   }
   return self;
 }
@@ -92,7 +95,7 @@
   return [self.TransitionContextViewRetriever contextViewForTransitionWithForeViewController:transition.foreViewController];
 }
 
-#pragma mark - Private APIs
+#pragma mark - Private
 
 - (void)prepareForTransitionWithSourceViewController:(UIViewController *)sourceViewController
                                   backViewController:(UIViewController *)backViewController
@@ -105,12 +108,28 @@
   NSAssert(!self.activeTransition, @"Transition already active!");
 
   if (self.directorClass) {
+    if (direction == MDMTransitionDirectionForward && [self.directorClass respondsToSelector:@selector(willPresentForeViewController:dismisser:)]) {
+      [self.directorClass willPresentForeViewController:foreViewController dismisser:self.dismisser];
+    }
+
     self.activeTransition = [[MDMTransition alloc] initWithDirectorClass:self.directorClass
                                                                direction:direction
                                                       backViewController:backViewController
                                                       foreViewController:foreViewController];
     self.activeTransition.delegate = self;
   }
+}
+
+- (void)dismiss {
+  if (self.associatedViewController.presentingViewController == nil) {
+    return;
+  }
+
+  if (self.associatedViewController.isBeingDismissed) {
+    return;
+  }
+
+  [self.associatedViewController dismissViewControllerAnimated:true completion:nil];
 }
 
 @end

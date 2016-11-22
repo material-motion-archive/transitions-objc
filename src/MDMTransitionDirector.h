@@ -23,6 +23,7 @@
 extern const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault;
 
 @class MDMTransition;
+@class MDMTransitionDismisser;
 
 /**
  A transition director is responsible for describing the motion that will occur during a
@@ -54,5 +55,28 @@ NS_SWIFT_NAME(TransitionDirector)
 
 /** The desired duration to be communicated to UIKit. */
 + (NSTimeInterval)transitionDuration;
+
+@end
+
+/**
+ A self-dismissing transition director is capable of registering gesture recognizers on the fore
+ view controller and associating them with a dismisser instance.
+
+ For example:
+
+     let tap = UITapGestureRecognizer()
+     foreViewController.view.addGestureRecognizer(tap)
+     dismisser.dismiss(whenGestureRecognizerBegins: tap)
+ */
+NS_SWIFT_NAME(SelfDismissingTransitionDirector)
+@protocol MDMSelfDismissingTransitionDirector <MDMTransitionDirector>
+
+/**
+ Invoked when a view controller is presented with this director class.
+
+ Use the provided dismisser to associate any gesture recognizers that should initiate a dismissal.
+ */
++ (void)willPresentForeViewController:(nonnull UIViewController *)foreViewController
+                            dismisser:(nonnull MDMTransitionDismisser *)dismisser;
 
 @end

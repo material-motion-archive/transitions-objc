@@ -17,7 +17,7 @@
 import MaterialMotionTransitions
 import MaterialMotionCoreAnimationTransitions
 
-class FadeInTransitionDirector: NSObject, TransitionDirector {
+class FadeInTransitionDirector: NSObject, SelfDismissingTransitionDirector {
 
   let transition: Transition
   required init(transition: Transition) {
@@ -32,5 +32,14 @@ class FadeInTransitionDirector: NSObject, TransitionDirector {
                                  fore: NSNumber(value: 1))
     fadeIn.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
     transition.runtime.addPlan(fadeIn, to: transition.foreViewController.view.layer)
+  }
+
+  static func willPresentForeViewController(_ foreViewController: UIViewController,
+                                            dismisser: TransitionDismisser) {
+    let tap = UITapGestureRecognizer()
+    foreViewController.view.addGestureRecognizer(tap)
+
+    // Dismiss the presented view controller when tapped.
+    dismisser.dismiss(whenGestureRecognizerBegins: tap)
   }
 }

@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 
 @class MDMTransitionController;
+@class MDMTransitionDismisser;
 
 /** Material Motion Transition extensions for UIViewController */
 @interface UIViewController (MaterialMotionTransitions)
@@ -43,6 +44,13 @@ NS_SWIFT_NAME(TransitionController)
 
 /** Unavailable. Use viewController.mdm_transitionController instead. */
 - (nonnull instancetype)init NS_UNAVAILABLE;
+
+#pragma mark Dismisser
+
+/** Returns the dismisser instance for the associated view controller. */
+@property(nonatomic, strong, nonnull, readonly) MDMTransitionDismisser *dismisser;
+
+#pragma mark Configuring directors
 
 /**
  An instance of the directorClass will be created to describe the motion for this transition

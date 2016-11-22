@@ -14,16 +14,10 @@
  limitations under the License.
  */
 
-#import "MDMReplicaController.h"
-#import "MDMTimeWindow.h"
-#import "MDMTimeWindowSegment.h"
-#import "MDMTransition.h"
-#import "MDMTransitionContextViewRetriever.h"
 #import "MDMTransitionController.h"
-#import "MDMTransitionDirector.h"
-#import "MDMTransitionDismisser.h"
-#import "MDMTransitionWindow.h"
-#import "MDMTransitionWindowSegment.h"
-#import "MDMViewReplicator.h"
 
-#import <MaterialMotionRuntime/MaterialMotionRuntime.h>
+@interface MDMTransitionController ()
+
+- (void)dismiss;
+
+@end
