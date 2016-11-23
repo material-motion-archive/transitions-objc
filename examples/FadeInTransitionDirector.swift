@@ -19,12 +19,13 @@ import MaterialMotionCoreAnimationTransitions
 
 class FadeInTransitionDirector: NSObject, SelfDismissingTransitionDirector {
 
-  let transition: Transition
   required init(transition: Transition) {
-    self.transition = transition
   }
 
   func setUp() {
+  }
+
+  func willBeginTransition(_ transition: Transition) {
     let fadeIn = TransitionTween("opacity",
                                  transition: transition,
                                  segment: .init(position: 0, length: 1),

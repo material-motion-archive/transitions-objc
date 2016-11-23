@@ -34,8 +34,22 @@ extern const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault;
 NS_SWIFT_NAME(TransitionDirector)
 @protocol MDMTransitionDirector <NSObject>
 
+#pragma mark Transition duration
+
+@optional
+
+/** Invoked on initiation of a view controller transition. */
+- (void)willBeginTransition:(nonnull MDMTransition *)transition
+    NS_SWIFT_NAME(willBeginTransition(_:));
+
+/** The desired duration to be communicated to UIKit. */
++ (NSTimeInterval)transitionDuration;
+
+// clang-format off
+
 /** Initializes a director with a Transition instance. */
-- (nonnull instancetype)initWithTransition:(nonnull MDMTransition *)transition;
+- (nonnull instancetype)initWithTransition:(nonnull MDMTransition *)transition
+__deprecated_msg("Implement willBeginTransition: instead. Deprecated in #nextrelease#.");
 
 #pragma mark Set up phase
 
@@ -47,14 +61,8 @@ NS_SWIFT_NAME(TransitionDirector)
  @param transaction All motion added to this transaction instance will be committed to the
  transition's runtime.
  */
-- (void)setUp;
-
-#pragma mark Transition duration
-
-@optional
-
-/** The desired duration to be communicated to UIKit. */
-+ (NSTimeInterval)transitionDuration;
+- (void)setUp
+__deprecated_msg("Implement willBeginTransition: instead. Deprecated in #nextrelease#.");
 
 @end
 
@@ -99,3 +107,5 @@ NS_SWIFT_NAME(InteractiveTransitionDirector)
 - (void)addGestureRecognizer:(nonnull UIGestureRecognizer *)gestureRecognizer;
 
 @end
+
+// clang-format on

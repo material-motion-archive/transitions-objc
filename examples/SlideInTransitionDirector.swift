@@ -18,13 +18,13 @@ import MaterialMotionTransitions
 import MaterialMotionCoreAnimationTransitions
 
 class SlideInTransitionDirector: NSObject, TransitionDirector {
-
-  let transition: Transition
   required init(transition: Transition) {
-    self.transition = transition
   }
 
   func setUp() {
+  }
+
+  func willBeginTransition(_ transition: Transition) {
     let midY = Double(transition.foreViewController.view.layer.position.y)
     let height = Double(transition.foreViewController.view.bounds.height)
     let slide = TransitionTween("position.y",

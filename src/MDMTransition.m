@@ -39,7 +39,15 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
   self = [super init];
   if (self) {
     _direction = direction;
-    _director = [[directorClass alloc] initWithTransition:self];
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if ([directorClass instancesRespondToSelector:@selector(initWithTransition:)]) {
+      _director = [[directorClass alloc] initWithTransition:self];
+    } else {
+      _director = [[directorClass alloc] init];
+    }
+#pragma clang diagnostic pop
 
     NSTimeInterval transitionDuration = MDMTransitionDirectorTransitionDurationDefault;
     if ([directorClass respondsToSelector:@selector(transitionDuration)]) {
@@ -127,7 +135,16 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
   self.backViewController.view.userInteractionEnabled = NO;
   self.foreViewController.view.userInteractionEnabled = NO;
 
-  [self.director setUp];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+  if ([self.director respondsToSelector:@selector(setUp)]) {
+    [self.director setUp];
+  }
+#pragma clang diagnostic pop
+
+  if ([self.director respondsToSelector:@selector(willBeginTransition:)]) {
+    [self.director willBeginTransition:self];
+  }
 
   if ([self.director respondsToSelector:@selector(addGestureRecognizer:)]) {
     for (UIGestureRecognizer *gestureRecognizer in self.dismisser.knownGestureRecognizers) {
