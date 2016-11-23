@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8
+osx_image: xcode8.1
 sudo: false
 notifications:
   email: false
@@ -12,6 +12,6 @@ before_install:
 script:
   - set -o pipefail
   - arcanist/bin/arc unit --everything --trace
-  - xcodebuild build -workspace MaterialMotionTransitions.xcworkspace -scheme Catalog -sdk "iphonesimulator10.0" -destination "name=iPhone 6s,OS=10.0" ONLY_ACTIVE_ARCH=YES | xcpretty -c;
+  - xcodebuild build -workspace MaterialMotionTransitions.xcworkspace -scheme Catalog -sdk "iphonesimulator10.1" -destination "name=iPhone 6s,OS=10.1" ONLY_ACTIVE_ARCH=YES | xcpretty -c;
 after_success:
   - bash <(curl -s https://codecov.io/bash)

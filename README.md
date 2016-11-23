@@ -1,7 +1,10 @@
 # Material Motion Transitions for Apple Devices
 
-[![Build Status](https://travis-ci.org/material-motion/material-motion-transitions-objc.svg?branch=develop)](https://travis-ci.org/material-motion/material-motion-transitions-objc)
-[![codecov](https://codecov.io/gh/material-motion/material-motion-transitions-objc/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/material-motion-transitions-objc)
+[![Build Status](https://travis-ci.org/material-motion/transitions-objc.svg?branch=develop)](https://travis-ci.org/material-motion/transitions-objc)
+[![codecov](https://codecov.io/gh/material-motion/transitions-objc/branch/develop/graph/badge.svg)](https://codecov.io/gh/material-motion/transitions-objc)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/MaterialMotionTransitions.svg)](https://cocoapods.org/pods/MaterialMotionTransitions)
+[![Platform](https://img.shields.io/cocoapods/p/MaterialMotionTransitions.svg)](http://cocoadocs.org/docsets/MaterialMotionTransitions)
+[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/MaterialMotionTransitions.svg)](http://cocoadocs.org/docsets/MaterialMotionTransitions)
 
 ## Supported languages
 
@@ -45,8 +48,8 @@ You will now have access to all of the APIs.
 Check out a local copy of the repo to access the Catalog application by running the following
 commands:
 
-    git clone https://github.com/material-motion/material-motion-transitions-objc.git
-    cd material-motion-transitions-objc
+    git clone https://github.com/material-motion/transitions-objc.git
+    cd transitions-objc
     pod install
     open MaterialMotionTransitions.xcworkspace
 
@@ -170,11 +173,11 @@ present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, anim
 
 We welcome contributions!
 
-Check out our [upcoming milestones](https://github.com/material-motion/material-motion-transitions-objc/milestones).
+Check out our [upcoming milestones](https://github.com/material-motion/transitions-objc/milestones).
 
-Learn more about [our team](https://material-motion.gitbooks.io/material-motion-team/content/),
-[our community](https://material-motion.gitbooks.io/material-motion-team/content/community/), and
-our [contributor essentials](https://material-motion.gitbooks.io/material-motion-team/content/essentials/).
+Learn more about [our team](https://material-motion.github.io/material-motion/team/),
+[our community](https://material-motion.github.io/material-motion/team/community/), and
+our [contributor essentials](https://material-motion.github.io/material-motion/team/essentials/).
 
 ## License
 
