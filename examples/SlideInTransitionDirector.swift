@@ -15,7 +15,7 @@
  */
 
 import MaterialMotionTransitions
-import MaterialMotionCoreAnimationTransitions
+import MaterialMotionCoreAnimation
 
 class SlideInTransitionDirector: NSObject, TransitionDirector {
   required init(transition: Transition) {
@@ -27,12 +27,14 @@ class SlideInTransitionDirector: NSObject, TransitionDirector {
   func willBeginTransition(_ transition: Transition) {
     let midY = Double(transition.foreViewController.view.layer.position.y)
     let height = Double(transition.foreViewController.view.bounds.height)
-    let slide = TransitionTween("position.y",
-                                transition: transition,
-                                segment: .init(position: 0, length: 1),
-                                back: NSNumber(value: midY + height),
-                                fore: NSNumber(value: midY))
-    slide.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-    transition.runtime.addPlan(slide, to: transition.foreViewController.view.layer)
+    let animation = Tween("position.y", duration: transition.window.duration)
+    if transition.direction == .forward {
+      animation.from = NSNumber(value: midY + height)
+      animation.to = NSNumber(value: midY)
+    } else {
+      animation.from = NSNumber(value: midY)
+      animation.to = NSNumber(value: midY + height)
+    }
+    transition.runtime.addPlan(animation, to: transition.foreViewController.view.layer)
   }
 }

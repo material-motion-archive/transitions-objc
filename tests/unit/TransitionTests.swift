@@ -15,7 +15,6 @@
  */
 
 import XCTest
-import MaterialMotionCoreAnimation
 import MaterialMotionTransitions
 
 class TransitionTests: XCTestCase {

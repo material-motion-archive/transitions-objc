@@ -15,7 +15,7 @@
  */
 
 import MaterialMotionTransitions
-import MaterialMotionCoreAnimationTransitions
+import MaterialMotionCoreAnimation
 
 class FadeInTransitionDirector: NSObject, SelfDismissingTransitionDirector {
 
@@ -26,13 +26,15 @@ class FadeInTransitionDirector: NSObject, SelfDismissingTransitionDirector {
   }
 
   func willBeginTransition(_ transition: Transition) {
-    let fadeIn = TransitionTween("opacity",
-                                 transition: transition,
-                                 segment: .init(position: 0, length: 1),
-                                 back: NSNumber(value: 0),
-                                 fore: NSNumber(value: 1))
-    fadeIn.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-    transition.runtime.addPlan(fadeIn, to: transition.foreViewController.view.layer)
+    let animation = Tween("opacity", duration: transition.window.duration)
+    if transition.direction == .forward {
+      animation.from = NSNumber(value: 0)
+      animation.to = NSNumber(value: 1)
+    } else {
+      animation.from = NSNumber(value: 1)
+      animation.to = NSNumber(value: 0)
+    }
+    transition.runtime.addPlan(animation, to: transition.foreViewController.view.layer)
   }
 
   static func willPresentForeViewController(_ foreViewController: UIViewController,

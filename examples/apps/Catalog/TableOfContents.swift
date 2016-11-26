@@ -16,14 +16,10 @@
 
 // MARK: Catalog by convention
 
-extension FadeInExampleViewController {
+import MaterialMotionTransitions
+
+extension AllTransitionDirectorsExampleViewController {
   class func catalogBreadcrumbs() -> [String] {
     return ["1. All transition directors"]
-  }
-}
-
-extension PhotoAlbumExampleViewController {
-  class func catalogBreadcrumbs() -> [String] {
-    return ["2. Photo album"]
   }
 }

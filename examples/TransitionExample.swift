@@ -30,9 +30,9 @@ class ShowNavController: UINavigationController {
   }
 }
 
-class FadeInExampleViewController: UITableViewController {
+public class AllTransitionDirectorsExampleViewController: UITableViewController {
 
-  override func viewDidLoad() {
+  override public func viewDidLoad() {
     super.viewDidLoad()
 
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
@@ -40,17 +40,17 @@ class FadeInExampleViewController: UITableViewController {
     view.backgroundColor = .white
   }
 
-  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return transitionDirectors.count
   }
 
-  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
     cell.textLabel?.text = NSStringFromClass(transitionDirectors[indexPath.row])
     return cell
   }
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let directorClass = transitionDirectors[indexPath.row]
 
     let viewController = UIViewController()
