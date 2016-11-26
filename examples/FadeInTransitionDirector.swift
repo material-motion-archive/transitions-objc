@@ -26,14 +26,10 @@ class FadeInTransitionDirector: NSObject, SelfDismissingTransitionDirector {
   }
 
   func willBeginTransition(_ transition: Transition) {
-    let animation = Tween("opacity", duration: transition.window.duration)
-    if transition.direction == .forward {
-      animation.from = NSNumber(value: 0)
-      animation.to = NSNumber(value: 1)
-    } else {
-      animation.from = NSNumber(value: 1)
-      animation.to = NSNumber(value: 0)
-    }
+    let values = [NSNumber(value: 0), NSNumber(value: 1)]
+    let animation = Tween("opacity",
+                          duration: transition.window.duration,
+                          values: transition.direction == .forward ? values : values.reversed())
     transition.runtime.addPlan(animation, to: transition.foreViewController.view.layer)
   }
 

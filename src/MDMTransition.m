@@ -22,9 +22,9 @@
 
 const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 
-@interface MDMTransition () <MDMRuntimeDelegate>
+@interface MDMTransition () <MDMMotionRuntimeDelegate>
 
-@property(nonatomic, strong) MDMRuntime *runtime;
+@property(nonatomic, strong) MDMMotionRuntime *runtime;
 @property(nonatomic, strong) id<MDMTransitionDirector> director;
 @property(nonatomic, strong) id<UIViewControllerContextTransitioning> transitionContext;
 
@@ -64,7 +64,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
     _backViewController = backViewController;
     _foreViewController = foreViewController;
 
-    _runtime = [MDMRuntime new];
+    _runtime = [MDMMotionRuntime new];
     _runtime.delegate = self;
   }
   return self;
@@ -97,10 +97,10 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
   [self initiateTransition];
 }
 
-#pragma mark - MDMSchedulerDelegate
+#pragma mark - MDMMotionRuntimeDelegate
 
-- (void)runtimeActivityStateDidChange:(MDMRuntime *)runtime {
-  if (runtime.activityState == MDMRuntimeActivityStateIdle) {
+- (void)motionRuntimeActivityStateDidChange:(MDMMotionRuntime *)runtime {
+  if (runtime.activityState == MDMMotionRuntimeActivityStateIdle) {
     [self runtimeDidIdle];
   }
 }
@@ -152,7 +152,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
     }
   }
 
-  if (self.runtime.activityState == MDMRuntimeActivityStateIdle) {
+  if (self.runtime.activityState == MDMMotionRuntimeActivityStateIdle) {
     [self runtimeDidIdle];
   }
 }

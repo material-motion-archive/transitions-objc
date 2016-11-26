@@ -27,14 +27,10 @@ class SlideInTransitionDirector: NSObject, TransitionDirector {
   func willBeginTransition(_ transition: Transition) {
     let midY = Double(transition.foreViewController.view.layer.position.y)
     let height = Double(transition.foreViewController.view.bounds.height)
-    let animation = Tween("position.y", duration: transition.window.duration)
-    if transition.direction == .forward {
-      animation.from = NSNumber(value: midY + height)
-      animation.to = NSNumber(value: midY)
-    } else {
-      animation.from = NSNumber(value: midY)
-      animation.to = NSNumber(value: midY + height)
-    }
+    let values = [NSNumber(value: midY + height), NSNumber(value: midY)]
+    let animation = Tween("position.y",
+                          duration: transition.window.duration,
+                          values: transition.direction == .forward ? values : values.reversed())
     transition.runtime.addPlan(animation, to: transition.foreViewController.view.layer)
   }
 }

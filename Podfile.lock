@@ -1,13 +1,27 @@
 PODS:
   - CatalogByConvention (2.0.0)
   - MaterialMotionCoreAnimation (2.0.0):
+    - MaterialMotionCoreAnimation/lib (= 2.0.0)
+    - MaterialMotionRuntime (~> 6.0)
+  - MaterialMotionCoreAnimation/lib (2.0.0):
     - MaterialMotionRuntime (~> 6.0)
   - MaterialMotionDirectManipulation (1.1.0):
+    - MaterialMotionDirectManipulation/lib (= 1.1.0)
+    - MaterialMotionRuntime (< 7.0, >= 5.0)
+  - MaterialMotionDirectManipulation/lib (1.1.0):
     - MaterialMotionRuntime (< 7.0, >= 5.0)
   - MaterialMotionPop (2.1.0):
+    - MaterialMotionPop/lib (= 2.1.0)
     - MaterialMotionRuntime (< 7.0, >= 4.0)
     - pop (~> 1.0)
-  - MaterialMotionRuntime (6.0.1)
+  - MaterialMotionPop/lib (2.1.0):
+    - MaterialMotionRuntime (< 7.0, >= 4.0)
+    - pop (~> 1.0)
+  - MaterialMotionRuntime (6.0.1):
+    - MaterialMotionRuntime/lib (= 6.0.1)
+  - MaterialMotionRuntime/lib (6.0.1)
+  - MaterialMotionRuntime/tests (6.0.1):
+    - MaterialMotionRuntime/lib
   - MaterialMotionTransitions/examples (1.1.0):
     - MaterialMotionCoreAnimation
     - MaterialMotionDirectManipulation
@@ -18,27 +32,58 @@ PODS:
     - MaterialMotionRuntime (~> 6.0)
   - MaterialMotionTransitions/tests (1.1.0):
     - MaterialMotionRuntime (~> 6.0)
+    - MaterialMotionRuntime/tests
     - MaterialMotionTransitions/lib
   - pop (1.0.9)
 
 DEPENDENCIES:
   - CatalogByConvention
+  - MaterialMotionCoreAnimation (from `https://github.com/material-motion/coreanimation-swift.git`, branch `develop`)
+  - MaterialMotionDirectManipulation (from `https://github.com/material-motion/direct-manipulation-swift.git`, branch `develop`)
+  - MaterialMotionPop (from `https://github.com/material-motion/pop-swift.git`, branch `develop`)
+  - MaterialMotionRuntime (from `https://github.com/material-motion/runtime-objc.git`, branch `develop`)
   - MaterialMotionTransitions/examples (from `./`)
   - MaterialMotionTransitions/tests (from `./`)
 
 EXTERNAL SOURCES:
+  MaterialMotionCoreAnimation:
+    :branch: develop
+    :git: https://github.com/material-motion/coreanimation-swift.git
+  MaterialMotionDirectManipulation:
+    :branch: develop
+    :git: https://github.com/material-motion/direct-manipulation-swift.git
+  MaterialMotionPop:
+    :branch: develop
+    :git: https://github.com/material-motion/pop-swift.git
+  MaterialMotionRuntime:
+    :branch: develop
+    :git: https://github.com/material-motion/runtime-objc.git
   MaterialMotionTransitions:
     :path: "./"
 
+CHECKOUT OPTIONS:
+  MaterialMotionCoreAnimation:
+    :commit: 3f4c3808234fe30a694bfcbd382f2855c30d1f74
+    :git: https://github.com/material-motion/coreanimation-swift.git
+  MaterialMotionDirectManipulation:
+    :commit: 23a429c50b34c7ed26728eebfc5ef6e8fd6dd2de
+    :git: https://github.com/material-motion/direct-manipulation-swift.git
+  MaterialMotionPop:
+    :commit: 34304d90ec7623f134d5bd12c0fb941a85fc997b
+    :git: https://github.com/material-motion/pop-swift.git
+  MaterialMotionRuntime:
+    :commit: 910c1c4a397edf96af65991a046229c56c11d947
+    :git: https://github.com/material-motion/runtime-objc.git
+
 SPEC CHECKSUMS:
   CatalogByConvention: be55c2263132e4f9f59299ac8a528ee8715b3275
-  MaterialMotionCoreAnimation: fc8f32e641c242a7ff40e78248b238f3954c5e75
-  MaterialMotionDirectManipulation: 2e63834e3f2f4a1e8c8506aa137771e7cccc1034
-  MaterialMotionPop: ce476b4915ad774fedfd1c51a259cede61a0c495
-  MaterialMotionRuntime: 1c99a092ffc82d0cfd4e69cc353bd0f69314920d
-  MaterialMotionTransitions: a824374d3a95c00820751fdfac2b46b81a0292c0
+  MaterialMotionCoreAnimation: d89e2431fa486bfaf9eadefb8a4df3bcb5a19a60
+  MaterialMotionDirectManipulation: 8eb20c75af62707dad9c23abc095eef04d179fd8
+  MaterialMotionPop: 16793be3b08a0146f5ed7f0f9d7d553c89d46be8
+  MaterialMotionRuntime: c7bcd694687ba429a14b749b7901e396146f3060
+  MaterialMotionTransitions: f23fe7e3058d552c2e7eca68ce27be367f068f0f
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
-PODFILE CHECKSUM: da8a5eae1ff36366d0c8f7f596ae50972c453710
+PODFILE CHECKSUM: dbb8c801673ae4a70604656928de6815afc249e5
 
 COCOAPODS: 1.1.1

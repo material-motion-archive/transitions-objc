@@ -37,7 +37,7 @@ NS_SWIFT_NAME(Transition)
 #pragma mark Scheduler
 
 /** The runtime for this transition. */
-@property(nonatomic, strong, nonnull, readonly) NSObject<MDMRuntimeFeatures> *runtime;
+@property(nonatomic, strong, nonnull, readonly) MDMMotionRuntime *runtime;
 
 #pragma mark Time window
 
