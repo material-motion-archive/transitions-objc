@@ -126,7 +126,9 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
   UIView *containerView = [self.transitionContext containerView];
   if (self.direction == MDMTransitionDirectionForward) {
     [containerView addSubview:toViewController.view];
-  } else {
+
+    // Don't mess with UIKit's chosen superview if it already exists.
+  } else if (toViewController.view.superview == nil) {
     [containerView insertSubview:toViewController.view atIndex:0];
   }
   [toViewController.view layoutIfNeeded];
