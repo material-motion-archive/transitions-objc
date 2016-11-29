@@ -100,7 +100,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
 #pragma mark - MDMMotionRuntimeDelegate
 
 - (void)motionRuntimeActivityStateDidChange:(MDMMotionRuntime *)runtime {
-  if (runtime.activityState == MDMMotionRuntimeActivityStateIdle) {
+  if (!runtime.isActive) {
     [self runtimeDidIdle];
   }
 }
@@ -154,7 +154,7 @@ const NSTimeInterval MDMTransitionDirectorTransitionDurationDefault = 0.35;
     }
   }
 
-  if (self.runtime.activityState == MDMMotionRuntimeActivityStateIdle) {
+  if (!self.runtime.isActive) {
     [self runtimeDidIdle];
   }
 }

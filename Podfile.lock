@@ -63,24 +63,24 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MaterialMotionCoreAnimation:
-    :commit: 3f4c3808234fe30a694bfcbd382f2855c30d1f74
+    :commit: 8757030988e6a580e4da9b903156c5f43edb4633
     :git: https://github.com/material-motion/coreanimation-swift.git
   MaterialMotionDirectManipulation:
-    :commit: 23a429c50b34c7ed26728eebfc5ef6e8fd6dd2de
+    :commit: 19c0736c07fbd1d466403af78034b34304ac534a
     :git: https://github.com/material-motion/direct-manipulation-swift.git
   MaterialMotionPop:
-    :commit: 34304d90ec7623f134d5bd12c0fb941a85fc997b
+    :commit: 81dc647e75bba6fd286616eeb56af74f4e17d7d5
     :git: https://github.com/material-motion/pop-swift.git
   MaterialMotionRuntime:
-    :commit: 910c1c4a397edf96af65991a046229c56c11d947
+    :commit: '0922102d40db6d903e3691a269b00eadb01a1490'
     :git: https://github.com/material-motion/runtime-objc.git
 
 SPEC CHECKSUMS:
   CatalogByConvention: be55c2263132e4f9f59299ac8a528ee8715b3275
   MaterialMotionCoreAnimation: d89e2431fa486bfaf9eadefb8a4df3bcb5a19a60
-  MaterialMotionDirectManipulation: 8eb20c75af62707dad9c23abc095eef04d179fd8
+  MaterialMotionDirectManipulation: 047ea06454c6e89bfb8021fab78b699c3658ea3f
   MaterialMotionPop: 16793be3b08a0146f5ed7f0f9d7d553c89d46be8
-  MaterialMotionRuntime: c7bcd694687ba429a14b749b7901e396146f3060
+  MaterialMotionRuntime: 428cc4ff81bc4190101bfb1dd34d9e13e26eeb36
   MaterialMotionTransitions: f23fe7e3058d552c2e7eca68ce27be367f068f0f
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
